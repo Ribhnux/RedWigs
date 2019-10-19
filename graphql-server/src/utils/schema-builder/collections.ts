@@ -1,54 +1,26 @@
-import { gql } from 'apollo-server-core';
-import { DocumentNode, GraphQLSchema } from 'graphql';
-import { redisClient } from '../adapters/redis';
+import { redisClient } from '../../adapters/redis';
 import _ from 'lodash';
-import { IResolvers, makeExecutableSchema } from 'graphql-tools';
 import uuid from 'uuid';
-import GraphQLUUID from 'graphql-type-uuid';
-
-const dbKey = 'redwigs';
-const DATA_KEY = 'data';
-const makeKey = (...keys: string[]): string => [dbKey, ...keys].join(':');
-
-export const getTypesAsJSON = async (): Promise<{ [key: string]: any }> => {
-  const typeSet: string[] = await redisClient.smembers(makeKey('typeset'));
-  const keysForTypeStructure = _.map(typeSet, v => makeKey('types', v));
-
-  const redisBulk = redisClient.multi();
-  _.forEach(keysForTypeStructure, typesStructureKey =>
-    redisBulk.hgetall(typesStructureKey)
-  );
-
-  const typeStructureResult = await redisBulk.exec();
-  const typeStructureValues = _.map(
-    typeStructureResult,
-    ([, typeStructObject]) => typeStructObject
-  );
-
-  const typesJSON = _.assign(
-    {},
-    ...typeSet.map((typeName, key) => ({
-      [typeName]: typeStructureValues[key]
-    }))
-  );
-
-  return typesJSON;
-};
-
-export const getPluralMap = async (): Promise<any> => {
-  const pluralsName: any = await redisClient.hgetall(makeKey('plural_map'));
-  return pluralsName;
-};
+import { makeKey } from './make-key';
+import {
+  BY_ID_AFFIX,
+  KEYNAME,
+  STATUS,
+  ID_KEY,
+  OP_KEY,
+  ARRAY_RE
+} from './constants';
+import { upperFirstCamelCase } from './string-helper';
 
 export const createQueryFieldsAndResolverByKeyOfTypes = async (
   pluralMap: string[],
   keyOfTypesJSON: string[]
 ) => {
   const queryResolvers = keyOfTypesJSON.map(typeName => {
-    const byIdResolverName = _.snakeCase(`${typeName}_by_id`);
+    const byIdResolverName = _.snakeCase(`${typeName}${BY_ID_AFFIX}`);
     const resolver = {};
     resolver[pluralMap[typeName]] = async (root: any) => {
-      const datamapKey: string = makeKey('datamap', typeName);
+      const datamapKey: string = makeKey(KEYNAME.DATAMAP, typeName);
       const dataMap: string[] = await redisClient.zrange(datamapKey, 0, -1);
 
       return dataMap;
@@ -63,7 +35,7 @@ export const createQueryFieldsAndResolverByKeyOfTypes = async (
     .map(
       typeName => `
       ${_.lowerCase(pluralMap[typeName])}: [${upperFirstCamelCase(typeName)}!]!
-      ${_.snakeCase(typeName + '_by_id')}(id: uuid!): ${upperFirstCamelCase(
+      ${_.snakeCase(typeName + BY_ID_AFFIX)}(id: uuid!): ${upperFirstCamelCase(
         typeName
       )}
     `
@@ -74,12 +46,6 @@ export const createQueryFieldsAndResolverByKeyOfTypes = async (
 
   return { fields, resolvers };
 };
-
-export const upperFirstCamelCase = (s: string) =>
-  _.chain(s)
-    .camelCase()
-    .upperFirst()
-    .value();
 
 export const createTokenStartCaseName = (...key: string[]): string =>
   upperFirstCamelCase(key.join(' '));
@@ -98,31 +64,59 @@ export const createInputAndResultTypes = async (typesJSON: any) => {
   const keyOfTypesJSON = Object.keys(typesJSON);
   const allInputAndResultTypes = keyOfTypesJSON.map((typeName: string) => {
     const [inputInsertName, resultInsertTypeName] = createInputResultNames(
-      'insert',
+      OP_KEY.INSERT,
       typeName
     );
 
     const [inputUpdateName, resultUpdateTypeName] = createInputResultNames(
-      'update',
+      OP_KEY.UPDATE,
       typeName
     );
 
-    const [, resultRemoveTypeName] = createInputResultNames('remove', typeName);
+    const [, resultRemoveTypeName] = createInputResultNames(
+      OP_KEY.REMOVE,
+      typeName
+    );
 
     const fieldJSON = typesJSON[typeName];
     const keysOfField = Object.keys(fieldJSON);
-    const graphqlTypeFields = keysOfField
-      .filter(field => field !== 'id')
-      .map(
-        keyOfTypeStruct => `${keyOfTypeStruct}: ${fieldJSON[keyOfTypeStruct]}`
-      )
-      .join('\n');
 
-    const inputTypes = [inputInsertName, inputUpdateName]
+    const graphqlTypeFields = (op: OP_KEY) =>
+      keysOfField
+        .filter(field => field !== ID_KEY)
+        .map(keyOfTypeStruct => {
+          const fieldValueString = fieldJSON[keyOfTypeStruct].replace(
+            ARRAY_RE,
+            ''
+          );
+
+          const isUseNonPrimitiveType = keyOfTypesJSON.includes(
+            _.toLower(fieldValueString)
+          );
+
+          const isNonPrimitiveTypeArray = ARRAY_RE.test(
+            fieldJSON[keyOfTypeStruct]
+          );
+
+          const fieldValue = isUseNonPrimitiveType
+            ? isNonPrimitiveTypeArray
+              ? '[uuid!]'
+              : 'uuid!'
+            : fieldJSON[keyOfTypeStruct];
+
+          const fieldKV = `${keyOfTypeStruct}: ${fieldValue}`;
+          return fieldKV;
+        })
+        .join('\n');
+
+    const inputTypes = [
+      { op: OP_KEY.INSERT, inputName: inputInsertName },
+      { op: OP_KEY.UPDATE, inputName: inputUpdateName }
+    ]
       .map(
-        inputName => `
+        ({ op, inputName }) => `
         input ${inputName} {
-          ${graphqlTypeFields}
+          ${graphqlTypeFields(op)}
         }
       `
       )
@@ -147,7 +141,6 @@ export const createInputAndResultTypes = async (typesJSON: any) => {
         status: String!
         id: uuid
       }
-      
     `;
 
     const resultTypes = [
@@ -171,25 +164,28 @@ export const createMutationResolverByKeyOfTypes = async (
     const pluralKeyName = pluralMap[typeName];
     const snakeTypeName = _.snakeCase(typeName);
     const [inputInsertName, resultInsertTypeName] = createInputResultNames(
-      'insert',
+      OP_KEY.INSERT,
       typeName
     );
 
     const [inputUpdateName, resultUpdateTypeName] = createInputResultNames(
-      'update',
+      OP_KEY.UPDATE,
       typeName
     );
 
-    const [, resultRemoveTypeName] = createInputResultNames('remove', typeName);
+    const [, resultRemoveTypeName] = createInputResultNames(
+      OP_KEY.REMOVE,
+      typeName
+    );
 
-    const createFieldName = `create_${pluralKeyName}`;
-    const updateFieldName = `update_${snakeTypeName}`;
-    const removeFieldName = `remove_${snakeTypeName}`;
+    const createFieldName = `${OP_KEY.CREATE}_${pluralKeyName}`;
+    const updateFieldName = `${OP_KEY.UPDATE}_${snakeTypeName}`;
+    const removeFieldName = `${OP_KEY.REMOVE}_${snakeTypeName}`;
 
     const createFieldKey = `${createFieldName}(data: [${inputInsertName}!]!): ${resultInsertTypeName}`;
     const updateFieldKey = `${updateFieldName}(id: uuid!, data: ${inputUpdateName}!): ${resultUpdateTypeName}!`;
     const removeFieldKey = `${removeFieldName}(id: uuid!): ${resultRemoveTypeName}!`;
-    const datamapKey = makeKey('datamap', typeName);
+    const datamapKey = makeKey(KEYNAME.DATAMAP, typeName);
 
     resolvers[createFieldName] = async ($: any, { data: newData }) => {
       try {
@@ -197,7 +193,7 @@ export const createMutationResolverByKeyOfTypes = async (
         const ids: string[] = [];
         _.forEach(newData as any[], data => {
           const newUUID = uuid.v4();
-          const dataKey = makeKey(DATA_KEY, pluralMap[typeName], newUUID);
+          const dataKey = makeKey(KEYNAME.DATA, pluralMap[typeName], newUUID);
           redisMulti.zadd(datamapKey, Date.now().toString(), newUUID);
           redisMulti.hmset(dataKey, data);
           ids.push(newUUID);
@@ -205,12 +201,12 @@ export const createMutationResolverByKeyOfTypes = async (
 
         await redisMulti.exec();
         return {
-          status: 'success',
+          status: STATUS.SUCCESS,
           new_data: ids
         };
       } catch (err) {
         return {
-          status: 'failed'
+          status: STATUS.FAILED
         };
       }
     };
@@ -218,18 +214,18 @@ export const createMutationResolverByKeyOfTypes = async (
     resolvers[updateFieldName] = async (root: any, { id, data }) => {
       try {
         const redisMulti = redisClient.multi();
-        const dataKey = makeKey(DATA_KEY, pluralMap[typeName], id);
+        const dataKey = makeKey(KEYNAME.DATA, pluralMap[typeName], id);
         _.forEach(Object.keys(data), key => {
           redisMulti.hset(dataKey, key, data[key]);
         });
         await redisMulti.exec();
         return {
-          status: 'success',
+          status: STATUS.SUCCESS,
           new_data: id
         };
       } catch (err) {
         return {
-          status: 'failed'
+          status: STATUS.FAILED
         };
       }
     };
@@ -237,18 +233,18 @@ export const createMutationResolverByKeyOfTypes = async (
     resolvers[removeFieldName] = async ($: any, { id }) => {
       try {
         const redisMulti = redisClient.multi();
-        const dataKey = makeKey(DATA_KEY, pluralMap[typeName], id);
+        const dataKey = makeKey(KEYNAME.DATAMAP, pluralMap[typeName], id);
         redisMulti.zrem(datamapKey, id);
         redisMulti.del(dataKey);
         await redisMulti.exec();
 
         return {
-          status: 'success',
+          status: STATUS.SUCCESS,
           id
         };
       } catch (err) {
         return {
-          status: 'failed'
+          status: STATUS.FAILED
         };
       }
     };
@@ -280,17 +276,25 @@ export const createTypesResolvers = async (
     const typesResolver = {};
     const typeName$ = upperFirstCamelCase(typeName);
     typesResolver[typeName$] = {};
-    typesResolver[typeName$]['id'] = (id: string) => id;
+    typesResolver[typeName$][ID_KEY] = (id: string) => id;
 
     const fieldJSON = typesJSON[typeName];
     const keysOfField = Object.keys(fieldJSON);
     keysOfField.forEach(field => {
-      if (field === 'id') return;
+      if (field === ID_KEY) return;
       typesResolver[typeName$][field] = async (id: string) => {
-        const fieldData = await redisClient.hget(
-          makeKey(DATA_KEY, pluralMap[typeName], id),
-          field
-        );
+        const dataFieldKey = makeKey(KEYNAME.DATA, pluralMap[typeName], id);
+        const fieldData = await redisClient.hget(dataFieldKey, field);
+
+        if (
+          keyOfTypesJSON.includes(
+            _.toLower(fieldJSON[field].replace(ARRAY_RE, ''))
+          ) &&
+          fieldJSON[field].match(ARRAY_RE)
+        ) {
+          return fieldData.split(',');
+        }
+
         return fieldData;
       };
     });
@@ -301,91 +305,24 @@ export const createTypesResolvers = async (
   return _.assign({}, ...resolvers);
 };
 
-export const extractGraphQLTypesFromDB = (typesJSON: {
-  [key: string]: any;
-}) => {
+export const convertJSONToGraphQLType = (typesJSON: { [key: string]: any }) => {
   const keyOfTypesJSON = Object.keys(typesJSON);
   const typeNameToTypeDefs = (typeName: string) => {
-    const fieldJSON = typesJSON[typeName];
-    const keysOfField = Object.keys(fieldJSON);
-    const graphqlTypeFields = keysOfField.map(
-      keyOfTypeStruct => `${keyOfTypeStruct}: ${fieldJSON[keyOfTypeStruct]}`
-    );
+    const type = typesJSON[typeName];
+    const fieldNames = Object.keys(type);
+    const makeGraphQLField = (fieldKey: string) =>
+      `${fieldKey}: ${type[fieldKey]}`;
+
+    const graphqlTypeFields = fieldNames.map(makeGraphQLField);
+    const joinedGraphQLFields = graphqlTypeFields.join('\n');
+    const refinedTypeName = upperFirstCamelCase(typeName);
 
     return `
-      type ${upperFirstCamelCase(typeName)} {
-        ${graphqlTypeFields.join('\n')}
+      type ${refinedTypeName} {
+        ${joinedGraphQLFields}
       }
     `;
   };
 
   return keyOfTypesJSON.map(typeNameToTypeDefs);
-};
-
-export const createTypeDefsFromDatabase = async (): Promise<{
-  schema: GraphQLSchema;
-  typeDefs: DocumentNode;
-  resolvers: unknown;
-}> => {
-  const typesJSON = await getTypesAsJSON();
-  const pluralMap = await getPluralMap();
-  const keyOfTypesJSON = Object.keys(typesJSON);
-
-  const graphqlTypes = extractGraphQLTypesFromDB(typesJSON);
-  const types = graphqlTypes.join('\n');
-
-  const {
-    fields: queryFields,
-    resolvers: queryResolvers
-  } = await createQueryFieldsAndResolverByKeyOfTypes(pluralMap, keyOfTypesJSON);
-
-  const {
-    fields: mutationFields,
-    resolvers: mutationResolvers
-  } = await createMutationResolverByKeyOfTypes(pluralMap, keyOfTypesJSON);
-
-  const inputAndResultTypes = await createInputAndResultTypes(typesJSON);
-
-  const typesResolvers = await createTypesResolvers(pluralMap, typesJSON);
-  const resolvers = {
-    uuid: GraphQLUUID,
-    Query: queryResolvers,
-    Mutation: mutationResolvers,
-    ...typesResolvers
-  };
-
-  const query = /* GraphQL */ `
-    type Query {
-      ${queryFields}
-    }
-  `;
-
-  const mutation = /* GraphQL */ `
-    type Mutation {
-      ${mutationFields}
-    }
-  `;
-
-  const typeDefsString = `
-    scalar uuid
-    ${query}
-    ${types}
-    ${inputAndResultTypes}
-    ${mutation}
-  `;
-
-  const typeDefs = gql(typeDefsString);
-  const schemaDefinition = `
-    schema {
-      query: Query
-      mutation: Mutation
-    }
-  `;
-
-  const schema = makeExecutableSchema({
-    typeDefs: [schemaDefinition, typeDefs],
-    resolvers
-  });
-
-  return { schema, typeDefs, resolvers };
 };
