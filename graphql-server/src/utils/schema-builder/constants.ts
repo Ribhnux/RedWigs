@@ -18,6 +18,7 @@ export enum OP_KEY {
 
 export enum KEYNAME {
   DB = 'redwigs',
+  COLLECTIONS = 'collections',
   DATA = 'data',
   DATAMAP = 'datamap',
   PLURAL_MAP = 'plural_map',
