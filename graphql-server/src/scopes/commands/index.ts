@@ -31,13 +31,14 @@ export const typeDefs = [redisTypeDefs, ...stringTypeDefs, ...keysTypeDefs];
 
 export const resolvers = {
   query: {
-    ...stringCommandResolvers.query
+    ...stringCommandResolvers.query,
+    ...keysCommandResolver.query
   },
   mutation: {
-    ...stringCommandResolvers.mutation
+    ...stringCommandResolvers.mutation,
+    ...keysCommandResolver.mutation
   },
   subscription: {},
   custom: { ...customScalarResolver }
 };
 
-export const schema = [redisSchema, ...stringSchema];
