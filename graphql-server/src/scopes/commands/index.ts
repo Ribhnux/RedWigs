@@ -1,3 +1,5 @@
+import gql from "graphql-tag";
+import { OKScalar, RespBulkScalar, IntStringScalarType } from "./scalars";
 import {
   resolvers as stringCommandResolvers,
   typeDefs as stringTypeDefs
@@ -20,10 +22,12 @@ const redisTypeDefs = gql`
 
 const customScalarResolver = {
   OK: OKScalar,
-  RespBulk: RespBulkScalar
+  RespBulk: RespBulkScalar,
+  IntString: IntStringScalarType
 };
 
 export const typeDefs = [redisTypeDefs, ...stringTypeDefs, ...keysTypeDefs];
+
 export const resolvers = {
   query: {
     ...stringCommandResolvers.query

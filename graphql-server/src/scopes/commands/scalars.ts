@@ -43,3 +43,26 @@ export const RespBulkScalar = new GraphQLScalarType({
     return null;
   }
 });
+
+const coerceIntString = (value: number | string) => {
+  if (typeof value !== "number" && typeof value !== "string") {
+    throw new TypeError(
+      `IntString cannot represent an array value: [${String(value)}]`
+    );
+  }
+
+  return value;
+};
+
+export const IntStringScalarType = new GraphQLScalarType({
+  name: "IntString",
+  serialize: coerceIntString,
+  parseValue: coerceIntString,
+  parseLiteral(ast) {
+    if (ast.kind !== Kind.INT && ast.kind !== Kind.STRING) {
+      return undefined;
+    }
+
+    return ast.value;
+  }
+});
