@@ -13,19 +13,17 @@ enum SetMode {
 }
 
 export type SetArg = {
-  args: {
-    key: string;
-    value: string;
-    expireMode: SetExpireMode;
-    time: number;
-    mode: SetMode;
-    keepTTL?: Boolean;
-  };
+  key: string;
+  value: string;
+  expireMode: SetExpireMode;
+  time: number;
+  mode: SetMode;
+  keepTTL?: Boolean;
 };
 
 export const _set: ResolverFunction<SetArg> = async (
   root,
-  { args: { key, value, expireMode, time, mode, keepTTL } },
+  { key, value, expireMode, time, mode, keepTTL },
   ctx
 ): Promise<OKResp | null> => {
   try {
@@ -37,12 +35,11 @@ export const _set: ResolverFunction<SetArg> = async (
     if (reply === OK) return OK;
     return null;
   } catch (err) {
-    console.error(err);
     return null;
   }
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   enum SetExpireMode {
     EX
     PX
@@ -53,19 +50,17 @@ export const schema = gql`
     XX
   }
 
-  input SetInput {
-    key: String!
-    value: String!
-    expireMode: SetExpireMode
-    time: Int
-    mode: SetMode
-    KeepTTL: Boolean
-  }
-
   extend type Mutation {
     """
     Set key to hold the string value. [See more >>](https://redis.io/commands/set)
     """
-    _set(args: SetInput): OK
+    _set(
+      key: String!
+      value: String!
+      expireMode: SetExpireMode
+      time: Int
+      mode: SetMode
+      KeepTTL: Boolean
+    ): OK
   }
 `;
