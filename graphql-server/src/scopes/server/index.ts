@@ -1,13 +1,13 @@
 import gql from "graphql-tag";
 import _version from "./version";
-import { default as _test, schema as testSchema } from "./test";
+import { default as _test, typeDefs as testTypeDefs } from "./test";
 import GraphQLJSON from "graphql-type-json";
 
-const JSONSchema = gql`
+const JSONTypedef = gql`
   scalar JSON
 `;
 
-const rootSchema = gql`
+const rootTypeDefs = gql`
   "All query for Redwigs"
   type Query {
     """
@@ -25,7 +25,7 @@ const rootSchema = gql`
   }
 `;
 
-export const schema = [rootSchema, JSONSchema, testSchema];
+export const typeDefs = [rootTypeDefs, JSONTypedef, testTypeDefs];
 
 export const resolver = {
   query: {

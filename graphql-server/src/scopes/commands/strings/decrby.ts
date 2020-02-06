@@ -20,7 +20,7 @@ export const _decrby: ResolverFunction<DecrByArg> = async (
   }
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   extend type Mutation {
     """
     Decrement the integer value of a key by the given number. [See more >>](https://redis.io/commands/decrby)

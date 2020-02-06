@@ -19,7 +19,7 @@ export const _incr: ResolverFunction<IncrArg> = async (
   }
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   extend type Mutation {
     """
     Increment the integer value of a key by one. [See more >>](https://redis.io/commands/incr)

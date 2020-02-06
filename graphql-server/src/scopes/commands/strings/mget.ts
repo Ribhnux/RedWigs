@@ -28,7 +28,7 @@ export const _mget: ResolverFunction<MGetArgs> = async (
   }
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   extend type Query {
     """
     Get the values of all the given keys. [See more >>](https://redis.io/commands/mget)

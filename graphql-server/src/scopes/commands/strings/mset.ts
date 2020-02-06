@@ -21,7 +21,7 @@ export const _mset: ResolverFunction<MSetArg> = async (
   }
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   input KeyValues {
     key: String!
     value: String!

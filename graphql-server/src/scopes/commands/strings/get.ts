@@ -15,7 +15,7 @@ export const _get: ResolverFunction<GetArg> = async (
   return value;
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   extend type Query {
     """
     Get the value of key. [See more >>](https://redis.io/commands/get)

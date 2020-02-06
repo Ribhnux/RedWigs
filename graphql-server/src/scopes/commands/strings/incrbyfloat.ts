@@ -20,7 +20,7 @@ export const _incrbyfloat: ResolverFunction<IncrByFloatArg> = async (
   }
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   extend type Mutation {
     """
     Increment the float value of a key by the given amount. [See more >>](https://redis.io/commands/incrbyfloat)

@@ -17,7 +17,7 @@ const _test: ResolverFunction<TestArgs> = (root, { data }, ctx): ReplyTest => {
   };
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   "ReplyTest is a response for test mutation"
   type ReplyTest {
     """

@@ -19,7 +19,7 @@ export const _decr: ResolverFunction<DecrArg> = async (
   }
 };
 
-export const schema = gql`
+export const typeDefs = gql`
   extend type Mutation {
     """
     Decrement the integer value of a key by one. [See more >>](https://redis.io/commands/decr)
