@@ -13,6 +13,7 @@ const redisTypeDefs = gql`
   scalar OK
   scalar Errors
   scalar RespBulk
+  scalar IntString
 
   type KeyValue {
     key: String
