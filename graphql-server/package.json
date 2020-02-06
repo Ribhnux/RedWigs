@@ -1,0 +1,36 @@
+{
+  "name": "redwigs-server-app",
+  "version": "0.1.0",
+  "description": "Redwigs Server App",
+  "main": "dist/app.js",
+  "repository": "https://github.com/Ribhnux/redwigs.git",
+  "author": "Ribhnux",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "ts-node-dev -r tsconfig-paths/register ./src/app.ts"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.16",
+    "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.1",
+    "graphql-type-json": "^0.3.1",
+    "graphql-type-uuid": "^0.2.0",
+    "ioredis": "^4.14.1",
+    "lodash": "^4.17.15",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "@types/graphql-type-json": "^0.3.2",
+    "@types/graphql-type-uuid": "^0.2.3",
+    "@types/ioredis": "^4.0.18",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^12.7.12",
+    "@types/uuid": "^3.4.5",
+    "ts-node": "^8.4.1",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.6.4"
+  }
+}
