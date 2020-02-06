@@ -1,19 +1,13 @@
-// import { bootstrap } from './utils/bootstrap';
-// import { bootstrapErrorHandler } from './handlers/error';
-
-// // clean is sweet
-// bootstrap().catch(bootstrapErrorHandler);
-
 import { ApolloServer, IResolvers } from "apollo-server";
 import listenHandler from "./handlers/listen";
 import {
-  schema as rootSchema,
+  typeDefs as rootTypeDefs,
   resolver as rootResolver
 } from "./scopes/server";
 
 import {
   resolvers as redisCommandResolvers,
-  schema as redisCommandSchemas
+  typeDefs as redisCommandTypeDefs
 } from "./scopes/commands";
 
 const resolvers: IResolvers = {
@@ -32,7 +26,7 @@ const resolvers: IResolvers = {
 };
 
 const serverOptions = {
-  typeDefs: [...rootSchema, ...redisCommandSchemas],
+  typeDefs: [...rootTypeDefs, ...redisCommandTypeDefs],
   resolvers
 };
 
