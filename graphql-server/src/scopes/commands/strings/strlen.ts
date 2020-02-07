@@ -18,7 +18,7 @@ export const _strlen: ResolverFunction<StrlenArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the length of the value stored in a key. [See more >>](https://redis.io/commands/strlen)
+    Get the length of the value stored in a key. [Read more >>](https://redis.io/commands/strlen)
     """
     _strlen(key: String!): Int
   }

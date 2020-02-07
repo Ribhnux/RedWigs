@@ -43,7 +43,7 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
-    Perform bitwise operations between strings. [See more >>](https://redis.io/commands/bitop)
+    Perform bitwise operations between strings. [Read more >>](https://redis.io/commands/bitop)
     """
     _bitop(operation: BitOperation!, destkey: String!, keys: [String!]!): Int
   }
