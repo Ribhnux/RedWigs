@@ -149,13 +149,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/graphql-type-json@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@types/graphql-type-json/-/graphql-type-json-0.3.2.tgz#1a7105e6546fc1630a5db4834bfbc0eb554986e4"
-  integrity sha512-c1cq4o8EhY0Z39ua8UXwG8uBs23xBYA/Uw0tXFl6SuTUpkVv/IJqf6pHQbfdC7nwFRhX2ifTOV/UIg0Q/IJsbg==
-  dependencies:
-    graphql "^14.5.3"
-
 "@types/graphql-type-uuid@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@types/graphql-type-uuid/-/graphql-type-uuid-0.2.3.tgz#4ba98c8e50fa44c60c1b5ee0bc2c0f0629afff0b"
@@ -247,6 +240,11 @@
   version "12.7.12"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.12.tgz#7c6c571cc2f3f3ac4a59a5f2bd48f5bdbc8653cc"
   integrity sha512-KPYGmfD0/b1eXurQ59fXD1GBzhSQfz6/lKBxkaHX9dKTzjXbK68Zt7yGUxUsCS1jeTy/8aL+d9JEr+S54mpkWQ==
+
+"@types/node@12.12.24":
+  version "12.12.24"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.24.tgz#d4606afd8cf6c609036b854360367d1b2c78931f"
+  integrity sha512-1Ciqv9pqwVtW6FsIUKSZNB82E5Cu1I2bBTj1xuIHXLe/1zYLl3956Nbhg2MzSYHVfl9/rmanjbQIb7LibfCnug==
 
 "@types/node@^10.1.0":
   version "10.17.14"
@@ -888,6 +886,13 @@ graphql-extensions@^0.10.10:
     apollo-server-env "^2.4.3"
     apollo-server-types "^0.2.10"
 
+graphql-scalars@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/graphql-scalars/-/graphql-scalars-1.0.6.tgz#7fd9bcc51116f9cebb03a27508d8e5b605675f92"
+  integrity sha512-HrXDZyC1dxp858TaNBNEDhUnwT5C4LwStZOXwSAQ+1h2Xl8aPrCy9M4ASu/ymBpo97sFAjSuNAJklfZedLABJg==
+  dependencies:
+    "@types/node" "12.12.24"
+
 graphql-subscriptions@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/graphql-subscriptions/-/graphql-subscriptions-1.1.0.tgz#5f2fa4233eda44cf7570526adfcf3c16937aef11"
@@ -910,11 +915,6 @@ graphql-tools@^4.0.0:
     deprecated-decorator "^0.1.6"
     iterall "^1.1.3"
     uuid "^3.1.0"
-
-graphql-type-json@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/graphql-type-json/-/graphql-type-json-0.3.1.tgz#47fca2b1fa7adc0758d165b33580d7be7a6cf548"
-  integrity sha512-1lPkUXQ2L8o+ERLzVAuc3rzc/E6pGF+6HnjihCVTK0VzR0jCuUd92FqNxoHdfILXqOn2L6b4y47TBxiPyieUVA==
 
 graphql-type-uuid@^0.2.0:
   version "0.2.0"
@@ -1101,6 +1101,11 @@ iterall@^1.2.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.3.0.tgz#afcb08492e2915cbd8a0884eb93a8c94d0d72fea"
   integrity sha512-QZ9qOMdF+QLHxy1QIpUHUU1D5pS2CG2P69LF6L6CPjPYA/XMOmKV3PZpawHoAjHNyB0swdVTRxdYT4tbBbxqwg==
+
+jsesc@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
+  integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
 
 json5@^1.0.1:
   version "1.0.1"
