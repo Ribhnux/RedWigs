@@ -8,6 +8,10 @@ import {
   resolvers as keysCommandResolver,
   typeDefs as keysTypeDefs
 } from "./keys";
+import {
+  resolvers as connectionsCommandResolver,
+  typeDefs as connectionsTypeDefs
+} from "./connections";
 
 const redisTypeDefs = gql`
   scalar OK
@@ -27,16 +31,23 @@ const customScalarResolver = {
   IntString: IntStringScalarType
 };
 
-export const typeDefs = [redisTypeDefs, ...stringTypeDefs, ...keysTypeDefs];
+export const typeDefs = [
+  redisTypeDefs,
+  ...stringTypeDefs,
+  ...keysTypeDefs,
+  ...connectionsTypeDefs
+];
 
 export const resolvers = {
   query: {
     ...stringCommandResolvers.query,
-    ...keysCommandResolver.query
+    ...keysCommandResolver.query,
+    ...connectionsCommandResolver.query
   },
   mutation: {
     ...stringCommandResolvers.mutation,
-    ...keysCommandResolver.mutation
+    ...keysCommandResolver.mutation,
+    ...connectionsCommandResolver.mutation
   },
   subscription: {},
   types: {
