@@ -39,6 +39,8 @@ export const resolvers = {
     ...keysCommandResolver.mutation
   },
   subscription: {},
+  types: {
+    ...keysCommandResolver.types
+  },
   custom: { ...customScalarResolver }
 };
-
