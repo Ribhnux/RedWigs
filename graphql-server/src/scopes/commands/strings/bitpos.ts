@@ -31,7 +31,7 @@ export const _bitpos: ResolverFunction<BitPosArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Find first bit set or clear in a string. [See more >>](https://redis.io/commands/bitpos)
+    Find first bit set or clear in a string. [Read more >>](https://redis.io/commands/bitpos)
     """
     _bitpos(key: String!, bit: Int!, start: Int, end: Int): Int
   }

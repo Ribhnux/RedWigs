@@ -24,7 +24,7 @@ export const _setrange: ResolverFunction<SetRangeArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Overwrite part of a string at key starting at the specified offset. [See more >>](https://redis.io/commands/setrange)
+    Overwrite part of a string at key starting at the specified offset. [Read more >>](https://redis.io/commands/setrange)
     """
     _setrange(key: String!, offset: Int!, value: String!): Int
   }

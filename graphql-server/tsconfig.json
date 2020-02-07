@@ -6,6 +6,7 @@
     "noImplicitAny": false,
     "baseUrl": "./src",
     "outDir": "./dist",
+    "downlevelIteration": true,
     "paths": {
       "@scopes/*": ["scopes/*"],
       "@adapters/*": ["adapters/*"],

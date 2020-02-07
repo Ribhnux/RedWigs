@@ -22,6 +22,7 @@ const resolvers: IResolvers = {
   },
 
   ...rootResolver.scalars,
+  ...redisCommandResolvers.types,
   ...redisCommandResolvers.custom
 };
 

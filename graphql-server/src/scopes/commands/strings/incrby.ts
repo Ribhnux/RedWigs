@@ -23,7 +23,7 @@ export const _incrby: ResolverFunction<IncrByArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Increment the integer value of a key by the given amount. [See more >>](https://redis.io/commands/incrby)
+    Increment the integer value of a key by the given amount. [Read more >>](https://redis.io/commands/incrby)
     """
     _incrby(key: String!, increment: Int!): Int
   }

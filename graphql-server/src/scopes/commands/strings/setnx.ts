@@ -23,7 +23,7 @@ export const _setnx: ResolverFunction<SetNXArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set the value of a key, only if the key does not exist. [See more >>](https://redis.io/commands/setnx)
+    Set the value of a key, only if the key does not exist. [Read more >>](https://redis.io/commands/setnx)
     """
     _setnx(key: String!, value: String!): Int
   }

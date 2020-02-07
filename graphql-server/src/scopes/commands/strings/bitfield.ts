@@ -316,7 +316,7 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
-    Perform arbitrary bitfield integer operations on strings. [See more >>](https://redis.io/commands/bitfield)
+    Perform arbitrary bitfield integer operations on strings. [Read more >>](https://redis.io/commands/bitfield)
     """
     _bitfield(key: String!, args: [BitFieldArgs]): [Int]
   }

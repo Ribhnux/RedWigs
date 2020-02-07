@@ -24,7 +24,7 @@ export const _getrange: ResolverFunction<GetRangeArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get a substring of the string stored at a key. [See more >>](https://redis.io/commands/getrange)
+    Get a substring of the string stored at a key. [Read more >>](https://redis.io/commands/getrange)
     """
     _getrange(key: String!, start: Int!, end: Int!): RespBulk
   }

@@ -3,18 +3,20 @@ import { ResolverFunction, OKResp, OK, KeyValue } from "@typings";
 import { redisClient } from "@adapters/redis";
 
 export type MSetArg = {
-  args: KeyValue[];
+  data: any[];
 };
 
 export const _mset: ResolverFunction<MSetArg> = async (
   root,
-  { args: keyValues },
+  { data },
   ctx
 ): Promise<OKResp> => {
   try {
-    const msetArgs = keyValues.map(({ key, value }) => [key, value]).flat();
+    const msetArgs = Object.keys(data)
+      .map(key => [key, data[key]])
+      .flat();
     const reply = await redisClient.mset.apply(redisClient, msetArgs);
-    return OK;
+    return reply;
   } catch (err) {
     console.error(err);
     return null;
@@ -29,8 +31,8 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
-    Set multiple keys to multiple values. [See more >>](https://redis.io/commands/mset)
+    Set multiple keys to multiple values. [Read more >>](https://redis.io/commands/mset)
     """
-    _mset(args: [KeyValues!]!): OK
+    _mset(data: JSON!): OK
   }
 `;

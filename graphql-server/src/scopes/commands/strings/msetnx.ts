@@ -22,7 +22,7 @@ export const _msetnx: ResolverFunction<MSetNXArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set multiple keys to multiple values, only if none of the keys exist. [See more >>](https://redis.io/commands/msetnx)
+    Set multiple keys to multiple values, only if none of the keys exist. [Read more >>](https://redis.io/commands/msetnx)
     """
     _msetnx(data: JSON!): Int
   }

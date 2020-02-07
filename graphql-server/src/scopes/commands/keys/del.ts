@@ -2,24 +2,24 @@ import gql from "graphql-tag";
 import { ResolverFunction, IntResp } from "@typings";
 import { redisClient } from "@adapters/redis";
 
-export type ExistsArg = {
+export type DelArg = {
   keys: string[];
 };
 
-export const _exists: ResolverFunction<ExistsArg> = async (
+export const _del: ResolverFunction<DelArg> = async (
   root,
   { keys },
   ctx
 ): Promise<IntResp> => {
-  const existNumber = await redisClient.exists(...keys);
+  const existNumber = await redisClient.del(...keys);
   return existNumber;
 };
 
 export const typeDefs = gql`
-  extend type Query {
+  extend type Mutation {
     """
-    Determine if a key exists. [Read more >>](https://redis.io/commands/exists)
+    Delete a key. [Read more >>](https://redis.io/commands/del)
     """
-    _exists(keys: [String!]!): Int
+    _del(keys: [String!]!): Int
   }
 `;

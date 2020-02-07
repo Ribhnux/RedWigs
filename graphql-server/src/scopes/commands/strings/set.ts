@@ -52,7 +52,7 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
-    Set key to hold the string value. [See more >>](https://redis.io/commands/set)
+    Set key to hold the string value. [Read more >>](https://redis.io/commands/set)
     """
     _set(
       key: String!

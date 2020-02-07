@@ -24,7 +24,7 @@ export const _psetex: ResolverFunction<PSetExArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set the value and expiration in milliseconds of a key. [See more >>](https://redis.io/commands/psetex)
+    Set the value and expiration in milliseconds of a key. [Read more >>](https://redis.io/commands/psetex)
     """
     _psetex(key: String!, milliseconds: Int!, value: String!): String
   }
