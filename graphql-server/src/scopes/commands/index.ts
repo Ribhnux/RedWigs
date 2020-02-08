@@ -20,6 +20,10 @@ import {
   resolvers as setsCommandResolver,
   typeDefs as setsTypeDefs
 } from "./sets";
+import {
+  resolvers as hashCommandResolver,
+  typeDefs as hashTypeDefs
+} from "./hashes";
 import { makeExecutableSchema } from "apollo-server";
 
 const redisTypeDefs = gql`
@@ -59,7 +63,8 @@ export const typeDefs = [
   ...stringTypeDefs,
   ...keysTypeDefs,
   ...connectionsTypeDefs,
-  ...setsTypeDefs
+  ...setsTypeDefs,
+  ...hashTypeDefs
 ];
 
 export const resolvers = {
@@ -67,13 +72,15 @@ export const resolvers = {
     ...stringCommandResolvers.query,
     ...keysCommandResolver.query,
     ...connectionsCommandResolver.query,
-    ...setsCommandResolver.query
+    ...setsCommandResolver.query,
+    ...hashCommandResolver.Query
   },
   Mutation: {
     ...stringCommandResolvers.mutation,
     ...keysCommandResolver.mutation,
     ...connectionsCommandResolver.mutation,
-    ...setsCommandResolver.mutation
+    ...setsCommandResolver.mutation,
+    ...hashCommandResolver.Mutation
   },
   Subscription: {},
   ...keysCommandResolver.types,
