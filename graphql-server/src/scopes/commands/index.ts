@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { makeExecutableSchema } from "apollo-server";
 import { OKScalar, RespBulkScalar, IntStringScalarType } from "./scalars";
 import {
   resolvers as customScalarResolvers,
@@ -24,7 +25,10 @@ import {
   resolvers as hashCommandResolver,
   typeDefs as hashTypeDefs
 } from "./hashes";
-import { makeExecutableSchema } from "apollo-server";
+import {
+  resolvers as geoCommandResolver,
+  typeDefs as geoTypeDefs
+} from "./geo";
 
 const redisTypeDefs = gql`
   scalar OK
@@ -64,7 +68,8 @@ export const typeDefs = [
   ...keysTypeDefs,
   ...connectionsTypeDefs,
   ...setsTypeDefs,
-  ...hashTypeDefs
+  ...hashTypeDefs,
+  ...geoTypeDefs
 ];
 
 export const resolvers = {
@@ -73,14 +78,16 @@ export const resolvers = {
     ...keysCommandResolver.query,
     ...connectionsCommandResolver.query,
     ...setsCommandResolver.query,
-    ...hashCommandResolver.Query
+    ...hashCommandResolver.Query,
+    ...geoCommandResolver.Query
   },
   Mutation: {
     ...stringCommandResolvers.mutation,
     ...keysCommandResolver.mutation,
     ...connectionsCommandResolver.mutation,
     ...setsCommandResolver.mutation,
-    ...hashCommandResolver.Mutation
+    ...hashCommandResolver.Mutation,
+    ...geoCommandResolver.Mutation
   },
   Subscription: {},
   ...keysCommandResolver.types,
