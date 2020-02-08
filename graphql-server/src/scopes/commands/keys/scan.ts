@@ -1,7 +1,9 @@
 import gql from "graphql-tag";
-import { ResolverFunction, IntResp } from "@typings";
+import { ResolverFunction } from "@typings";
+import _ from "lodash";
 import { redisClient } from "@adapters/redis";
 import { KeyType } from "./type";
+import { parseJSONOrKeep } from "@utils/json";
 
 export type ScanArg = {
   cursor: number;
@@ -20,7 +22,7 @@ export enum ScanType {
 
 export type ScanResult = {
   cursor: number;
-  keys: string[] | any;
+  elements: string[] | any;
   _next?: ScanResult;
   _prevArgs?: ScanArg;
 };
@@ -55,9 +57,21 @@ export const doScan = async ({
     ...commandArg
   );
 
+  const finalResult =
+    scanCommand === ScanType.HSCAN || scanCommand === ScanType.ZSCAN
+      ? _.merge(
+          {},
+          ..._.chain(keysResult)
+            .chunk(2)
+            .map(([key, value]) => ({ [key]: parseJSONOrKeep(value) }))
+            .flatMap()
+            .value()
+        )
+      : keysResult;
+
   const scanResult = {
     cursor: cursorResult,
-    keys: keysResult,
+    elements: finalResult,
     _prevArgs: useArgs
   };
 
@@ -91,7 +105,7 @@ export const _scan: ResolverFunction<ScanArg> = async (
 export const typeDefs = gql`
   type RedisScanResult {
     cursor: Int
-    keys: [String]
+    elements: JSON
     _next: RedisScanResult
   }
 
