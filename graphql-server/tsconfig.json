@@ -10,6 +10,7 @@
     "paths": {
       "@scopes/*": ["scopes/*"],
       "@adapters/*": ["adapters/*"],
+      "@utils/*": ["utils/*"],
       "@typings": ["typings"]
     }
   }
