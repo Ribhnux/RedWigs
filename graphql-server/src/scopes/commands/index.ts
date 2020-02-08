@@ -12,6 +12,10 @@ import {
   resolvers as connectionsCommandResolver,
   typeDefs as connectionsTypeDefs
 } from "./connections";
+import {
+  resolvers as setsCommandResolver,
+  typeDefs as setsTypeDefs
+} from "./sets";
 
 const redisTypeDefs = gql`
   scalar OK
@@ -35,19 +39,22 @@ export const typeDefs = [
   redisTypeDefs,
   ...stringTypeDefs,
   ...keysTypeDefs,
-  ...connectionsTypeDefs
+  ...connectionsTypeDefs,
+  ...setsTypeDefs
 ];
 
 export const resolvers = {
   query: {
     ...stringCommandResolvers.query,
     ...keysCommandResolver.query,
-    ...connectionsCommandResolver.query
+    ...connectionsCommandResolver.query,
+    ...setsCommandResolver.query
   },
   mutation: {
     ...stringCommandResolvers.mutation,
     ...keysCommandResolver.mutation,
-    ...connectionsCommandResolver.mutation
+    ...connectionsCommandResolver.mutation,
+    ...setsCommandResolver.mutation
   },
   subscription: {},
   types: {

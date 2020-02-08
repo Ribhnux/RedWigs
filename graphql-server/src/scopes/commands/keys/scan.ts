@@ -5,76 +5,84 @@ import { KeyType } from "./type";
 
 export type ScanArg = {
   cursor: number;
+  key?: string;
   match?: string;
   count?: number;
-  type: KeyType;
+  type?: KeyType;
 };
+
+export enum ScanType {
+  SCAN = "scan",
+  SSCAN = "sscan",
+  HSCAN = "hscan",
+  ZSCAN = "zscan"
+}
 
 export type ScanResult = {
   cursor: number;
-  keys: string[];
-  _prevArgs: ScanArg;
+  keys: string[] | any;
   _next?: ScanResult;
+  _prevArgs?: ScanArg;
+};
+
+export type DoScanParams = {
+  scanCommand: ScanType;
+  args?: ScanArg;
+  prevArgs?: ScanArg;
+};
+
+export const doScan = async ({
+  scanCommand,
+  args,
+  prevArgs
+}: DoScanParams): Promise<ScanResult> => {
+  const useArgs: ScanArg = prevArgs ? prevArgs : args;
+  const buildScanArg = (cursor: number) => {
+    const { match, count, type, key } = useArgs;
+    const _args: any[] = [];
+    if (key) _args.push(key);
+    _args.push(cursor);
+    if (match) _args.push("MATCH", match);
+    if (count) _args.push("COUNT", count);
+    if (type) _args.push("TYPE", type);
+    return _args;
+  };
+
+  const commandArg = buildScanArg(args.cursor);
+
+  const [cursorResult, keysResult] = await redisClient.send_command(
+    scanCommand,
+    ...commandArg
+  );
+
+  const scanResult = {
+    cursor: cursorResult,
+    keys: keysResult,
+    _prevArgs: useArgs
+  };
+
+  return scanResult;
 };
 
 export const typeResolvers = {
   RedisScanResult: {
-    async _next({ cursor, _prevArgs }: ScanResult): Promise<ScanResult> {
-      const buildScanArg = (cursor: number) => {
-        const args: any[] = [cursor];
-        if (_prevArgs.match) args.push("MATCH", _prevArgs.match);
-        if (_prevArgs.count) args.push("COUNT", _prevArgs.count);
-        if (_prevArgs.type) args.push("TYPE", _prevArgs.type);
-        return args;
-      };
-
-      const [cursorResult, keysResult] = await redisClient.send_command(
-        "scan",
-        ...buildScanArg(cursor)
-      );
-
-      const scanResult: ScanResult = {
-        cursor: cursorResult,
-        keys: keysResult,
-        _prevArgs: {
-          cursor: _prevArgs.cursor,
-          type: _prevArgs.type,
-          count: _prevArgs.count,
-          match: _prevArgs.match
-        }
-      };
-
-      return scanResult;
+    _next: async (args: ScanResult): Promise<ScanResult> => {
+      return await doScan({
+        scanCommand: ScanType.SCAN,
+        args,
+        prevArgs: args._prevArgs
+      });
     }
   }
 };
 
 export const _scan: ResolverFunction<ScanArg> = async (
   root,
-  { cursor, type, count, match },
+  args,
   ctx
 ): Promise<ScanResult> => {
   try {
-    const buildScanArg = (cursor: number) => {
-      const args: any[] = [cursor];
-      if (match) args.push("MATCH", match);
-      if (count) args.push("COUNT", count);
-      if (type) args.push("TYPE", type);
-      return args;
-    };
-
-    const mainArgs = buildScanArg(cursor);
-    const [cursorResult, keysResult] = await redisClient.send_command(
-      "scan",
-      ...mainArgs
-    );
-
-    const scanResult: ScanResult = {
-      cursor: cursorResult,
-      keys: keysResult,
-      _prevArgs: { cursor, type, count, match }
-    };
-    return scanResult;
+    return await doScan({ scanCommand: ScanType.SCAN, args });
   } catch (err) {
     return err.message;
   }
