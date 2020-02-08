@@ -29,6 +29,10 @@ import {
   resolvers as geoCommandResolver,
   typeDefs as geoTypeDefs
 } from "./geo";
+import {
+  resolvers as hyperLogLogCommandResolver,
+  typeDefs as hyperLogLogTypeDefs
+} from "./hyperloglog";
 
 const redisTypeDefs = gql`
   scalar OK
@@ -69,7 +73,8 @@ export const typeDefs = [
   ...connectionsTypeDefs,
   ...setsTypeDefs,
   ...hashTypeDefs,
-  ...geoTypeDefs
+  ...geoTypeDefs,
+  ...hyperLogLogTypeDefs
 ];
 
 export const resolvers = {
@@ -79,7 +84,8 @@ export const resolvers = {
     ...connectionsCommandResolver.query,
     ...setsCommandResolver.query,
     ...hashCommandResolver.Query,
-    ...geoCommandResolver.Query
+    ...geoCommandResolver.Query,
+    ...hyperLogLogCommandResolver.Query
   },
   Mutation: {
     ...stringCommandResolvers.mutation,
@@ -87,7 +93,8 @@ export const resolvers = {
     ...connectionsCommandResolver.mutation,
     ...setsCommandResolver.mutation,
     ...hashCommandResolver.Mutation,
-    ...geoCommandResolver.Mutation
+    ...geoCommandResolver.Mutation,
+    ...hyperLogLogCommandResolver.Mutation
   },
   Subscription: {},
   ...keysCommandResolver.types,
