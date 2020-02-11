@@ -42,7 +42,7 @@ import {
   typeDefs as sortedSetsTypeDefs
 } from "./sortedsets";
 
-const redisTypeDefs = gql`
+const redisRootTypeDefs = gql`
   scalar OK
   scalar Errors
   scalar RespBulk
@@ -75,7 +75,7 @@ const customScalarResolver = {
 
 export const typeDefs = [
   customScalarTypeDefs,
-  redisTypeDefs,
+  redisRootTypeDefs,
   ...stringTypeDefs,
   ...keysTypeDefs,
   ...connectionsTypeDefs,
