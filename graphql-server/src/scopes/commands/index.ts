@@ -37,8 +37,12 @@ import {
   resolvers as listCommandResolver,
   typeDefs as listTypeDefs
 } from "./lists";
+import {
+  resolvers as sortedSetsCommandResolver,
+  typeDefs as sortedSetsTypeDefs
+} from "./sortedsets";
 
-const redisTypeDefs = gql`
+const redisRootTypeDefs = gql`
   scalar OK
   scalar Errors
   scalar RespBulk
@@ -71,7 +75,7 @@ const customScalarResolver = {
 
 export const typeDefs = [
   customScalarTypeDefs,
-  redisTypeDefs,
+  redisRootTypeDefs,
   ...stringTypeDefs,
   ...keysTypeDefs,
   ...connectionsTypeDefs,
@@ -79,7 +83,8 @@ export const typeDefs = [
   ...hashTypeDefs,
   ...geoTypeDefs,
   ...hyperLogLogTypeDefs,
-  ...listTypeDefs
+  ...listTypeDefs,
+  ...sortedSetsTypeDefs
 ];
 
 export const resolvers = {
@@ -91,7 +96,8 @@ export const resolvers = {
     ...hashCommandResolver.Query,
     ...geoCommandResolver.Query,
     ...hyperLogLogCommandResolver.Query,
-    ...listCommandResolver.Query
+    ...listCommandResolver.Query,
+    ...sortedSetsCommandResolver.Query
   },
   Mutation: {
     ...stringCommandResolvers.mutation,
@@ -101,7 +107,8 @@ export const resolvers = {
     ...hashCommandResolver.Mutation,
     ...geoCommandResolver.Mutation,
     ...hyperLogLogCommandResolver.Mutation,
-    ...listCommandResolver.Mutation
+    ...listCommandResolver.Mutation,
+    ...sortedSetsCommandResolver.Mutation
   },
   Subscription: {},
   ...keysCommandResolver.types,
