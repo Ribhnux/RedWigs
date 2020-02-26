@@ -42,6 +42,11 @@ import {
   typeDefs as sortedSetsTypeDefs
 } from "./sortedsets";
 
+import {
+  resolvers as pubsubCommandResolver,
+  typeDefs as pubsubsTypeDefs
+} from "./pubsub";
+
 const redisRootTypeDefs = gql`
   scalar OK
   scalar Errors
@@ -84,7 +89,8 @@ export const typeDefs = [
   ...geoTypeDefs,
   ...hyperLogLogTypeDefs,
   ...listTypeDefs,
-  ...sortedSetsTypeDefs
+  ...sortedSetsTypeDefs,
+  ...pubsubsTypeDefs
 ];
 
 export const resolvers = {
@@ -97,7 +103,8 @@ export const resolvers = {
     ...geoCommandResolver.Query,
     ...hyperLogLogCommandResolver.Query,
     ...listCommandResolver.Query,
-    ...sortedSetsCommandResolver.Query
+    ...sortedSetsCommandResolver.Query,
+    ...pubsubCommandResolver.Query
   },
   Mutation: {
     ...stringCommandResolvers.mutation,
@@ -108,9 +115,12 @@ export const resolvers = {
     ...geoCommandResolver.Mutation,
     ...hyperLogLogCommandResolver.Mutation,
     ...listCommandResolver.Mutation,
-    ...sortedSetsCommandResolver.Mutation
+    ...sortedSetsCommandResolver.Mutation,
+    ...pubsubCommandResolver.Mutation
   },
-  Subscription: {},
+  Subscription: {
+    ...pubsubCommandResolver.Subscription
+  },
   ...keysCommandResolver.types,
   ...customScalarResolver
 };
