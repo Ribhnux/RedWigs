@@ -316,6 +316,8 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
+    **BITFIELD key [GET type offset] [SET type offset value] [INCRBY type offset increment] [OVERFLOW WRAP|SAT|FAIL]**
+
     Perform arbitrary bitfield integer operations on strings. [Read more >>](https://redis.io/commands/bitfield)
     """
     _bitfield(key: String!, args: [BitFieldArgs]): [Int]

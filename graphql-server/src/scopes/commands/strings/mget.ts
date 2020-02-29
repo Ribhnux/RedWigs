@@ -31,7 +31,10 @@ export const _mget: ResolverFunction<MGetArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the values of all the given keys. [Read more >>](https://redis.io/commands/mget)
+    **MGET key [key ...]**
+
+    Get the values of all the given keys.
+    [Read more >>](https://redis.io/commands/mget)
     """
     _mget(keys: [String!]!): JSON
   }

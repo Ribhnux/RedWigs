@@ -24,7 +24,10 @@ export const _setbit: ResolverFunction<SetBitArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Sets or clears the bit at offset in the string value stored at key. [Read more >>](https://redis.io/commands/setbit)
+    **SETBIT key offset value**
+
+    Sets or clears the bit at offset in the string value stored at key.
+    [Read more >>](https://redis.io/commands/setbit)
     """
     _setbit(key: String!, offset: Int!, value: Int!): Int
   }

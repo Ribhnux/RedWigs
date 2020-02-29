@@ -22,6 +22,8 @@ export const _incr: ResolverFunction<IncrArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **INCR key**
+
     Increment the integer value of a key by one. [Read more >>](https://redis.io/commands/incr)
     """
     _incr(key: String!): Int

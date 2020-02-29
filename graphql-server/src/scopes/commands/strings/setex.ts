@@ -24,7 +24,10 @@ export const _setex: ResolverFunction<SetExArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set the value and expiration of a key. [Read more >>](https://redis.io/commands/setex)
+    **SETEX key seconds value**
+
+    Set the value and expiration of a key.
+    [Read more >>](https://redis.io/commands/setex)
     """
     _setex(key: String!, seconds: Int!, value: String!): String
   }
