@@ -25,7 +25,10 @@ export const _hget: ResolverFunction<HGetArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the value of a hash field. [Read more >>](https://redis.io/commands/hget)
+    **HGET key field**
+
+    Get the value of a hash field.
+    [Read more >>](https://redis.io/commands/hget)
     """
     _hget(key: String!, field: String!): JSON
   }

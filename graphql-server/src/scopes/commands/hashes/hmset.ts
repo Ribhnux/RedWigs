@@ -27,7 +27,10 @@ export const _hmset: ResolverFunction<HMSetArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Get the length of the value of a hash field. [Read more >>](https://redis.io/commands/hmset)
+    **HMSET key field value [field value ...]**
+
+    Get the length of the value of a hash field.
+    [Read more >>](https://redis.io/commands/hmset)
     """
     _hmset(key: String!, data: JSON!): String
       @deprecated(

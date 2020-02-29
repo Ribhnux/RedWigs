@@ -24,6 +24,8 @@ export const _hincrbyfloat: ResolverFunction<HIncrByArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **HINCRBYFLOAT key field increment**
+
     Increment the float value of a hash field by the given amount.
     [Read more >>](https://redis.io/commands/hincrby)
     """

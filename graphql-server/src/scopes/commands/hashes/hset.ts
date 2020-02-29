@@ -27,7 +27,10 @@ export const _hset: ResolverFunction<HSetArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set the string value of a hash field. [Read more >>](https://redis.io/commands/hset)
+    **HSET key field value [field value ...]**
+
+    Set the string value of a hash field.
+    [Read more >>](https://redis.io/commands/hset)
     """
     _hset(key: String!, data: JSON!): Int
   }

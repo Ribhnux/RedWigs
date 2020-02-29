@@ -24,7 +24,10 @@ export const _hdel: ResolverFunction<HDelArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Delete one or more hash fields. [Read more >>](https://redis.io/commands/hdel)
+    **HDEL key field [field ...]**
+
+    Delete one or more hash fields.
+    [Read more >>](https://redis.io/commands/hdel)
     """
     _hdel(key: String!, fields: [String!]!): Int
   }

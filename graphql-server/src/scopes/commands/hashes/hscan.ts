@@ -31,7 +31,10 @@ export const _hscan: ResolverFunction<HScanArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Incrementally iterate hash fields and associated values. [Read more >>](https://redis.io/commands/hscan)
+    **HSCAN key cursor [MATCH pattern] [COUNT count]**
+
+    Incrementally iterate hash fields and associated values.
+    [Read more >>](https://redis.io/commands/hscan)
     """
     _hscan(
       key: String!

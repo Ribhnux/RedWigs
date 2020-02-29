@@ -25,7 +25,10 @@ export const _hgetall: ResolverFunction<HMGetArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get all the fields and values in a hash. [Read more >>](https://redis.io/commands/hgetall)
+    **HGETALL key**
+
+    Get all the fields and values in a hash.
+    [Read more >>](https://redis.io/commands/hgetall)
     """
     _hgetall(key: String!): JSON
   }
