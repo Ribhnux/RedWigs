@@ -38,7 +38,10 @@ export const _geopos: ResolverFunction<GeoPosArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Returns longitude and latitude of members of a geospatial index. [Read more >>](https://redis.io/commands/geopos)
+    **GEOPOS key member [member ...]**
+
+    Returns longitude and latitude of members of a geospatial index.
+    [Read more >>](https://redis.io/commands/geopos)
     """
     _geopos(key: String!, members: [String!]!): JSON
   }

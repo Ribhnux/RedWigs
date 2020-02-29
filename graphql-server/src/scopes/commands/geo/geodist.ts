@@ -41,6 +41,8 @@ export const typeDefs = gql`
 
   extend type Query {
     """
+    **GEODIST key member1 member2 [m|km|ft|mi]**
+
     Returns the distance between two members of a geospatial index
     [Read more >>](https://redis.io/commands/geodist)
     """

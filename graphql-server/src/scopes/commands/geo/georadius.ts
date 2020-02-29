@@ -114,8 +114,10 @@ export const typeDefs = gql`
 
   extend type Query {
     """
+    **GEORADIUS key longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC] [STORE key] [STOREDIST key]**
+
     Query a sorted set representing a geospatial index to fetch members
-    matching a given maximum distance from a point
+    matching a given maximum distance from a point.
     [Read more >>](https://redis.io/commands/georadius)
     """
     _georadius(
