@@ -22,6 +22,8 @@ export const _pfcount: ResolverFunction<PFCountArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **PFCOUNT key [key ...]**
+
     Return the approximated cardinality of the set(s) observed by the HyperLogLog at key(s).
     [Read more >>](https://redis.io/commands/pfadd)
     """
