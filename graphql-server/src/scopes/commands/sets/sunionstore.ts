@@ -23,7 +23,10 @@ export const _sunionstore: ResolverFunction<SUnionStoreArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Add multiple sets and store the resulting set in a key. [Read more >>](https://redis.io/commands/sunionstore)
+    **SUNIONSTORE destination key [key ...]**
+
+    Add multiple sets and store the resulting set in a key.
+    [Read more >>](https://redis.io/commands/sunionstore)
     """
     _sunionstore(destination: String, keys: [String!]!): Int
   }

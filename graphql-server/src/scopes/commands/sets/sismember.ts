@@ -23,7 +23,10 @@ export const _sismember: ResolverFunction<SIsMemberArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Determine if a given value is a member of a set. [Read more >>](https://redis.io/commands/sismember)
+    **SISMEMBER key member**
+
+    Determine if a given value is a member of a set.
+    [Read more >>](https://redis.io/commands/sismember)
     """
     _sismember(key: String!, member: String!): Int
   }

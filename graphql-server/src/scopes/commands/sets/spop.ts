@@ -25,7 +25,10 @@ export const _spop: ResolverFunction<SPopArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Remove and return one or multiple random members from a set. [Read more >>](https://redis.io/commands/spop)
+    **SPOP key [count]**
+
+    Remove and return one or multiple random members from a set.
+    [Read more >>](https://redis.io/commands/spop)
     """
     _spop(key: String!, count: Int): String
   }

@@ -23,7 +23,10 @@ export const _srem: ResolverFunction<SRemArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Remove one or more members from a set. [Read more >>](https://redis.io/commands/srem)
+    **SREM key member [member ...]**
+
+    Remove one or more members from a set.
+    [Read more >>](https://redis.io/commands/srem)
     """
     _srem(key: String!, members: [String]): Int
   }

@@ -22,7 +22,10 @@ export const _scard: ResolverFunction<SCardArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the number of members in a set. [Read more >>](https://redis.io/commands/scard)
+    **SCARD key**
+
+    Get the number of members in a set.
+    [Read more >>](https://redis.io/commands/scard)
     """
     _scard(key: String!): Int
   }

@@ -23,7 +23,10 @@ export const _sinterstore: ResolverFunction<SInterStoreArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Intersect multiple sets and store the resulting set in a key. [Read more >>](https://redis.io/commands/sinterstore)
+    **SINTERSTORE destination key [key ...]**
+
+    Intersect multiple sets and store the resulting set in a key.
+    [Read more >>](https://redis.io/commands/sinterstore)
     """
     _sinterstore(destination: String!, keys: [String]!): Int
   }

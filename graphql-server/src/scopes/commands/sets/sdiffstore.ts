@@ -23,7 +23,10 @@ export const _sdiffstore: ResolverFunction<SDiffStoreArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Subtract multiple sets and store the resulting set in a key. [Read more >>](https://redis.io/commands/sdiffstore)
+    **SDIFFSTORE destination key [key ...]**
+
+    Subtract multiple sets and store the resulting set in a key.
+    [Read more >>](https://redis.io/commands/sdiffstore)
     """
     _sdiffstore(destination: String!, keys: [String]!): Int
   }
