@@ -26,7 +26,10 @@ export const _hsetnx: ResolverFunction<HSetNXArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set the value of a hash field, only if the field does not exist. [Read more >>](https://redis.io/commands/hsetnx)
+    **HSETNX key field value**
+
+    Set the value of a hash field, only if the field does not exist.
+    [Read more >>](https://redis.io/commands/hsetnx)
     """
     _hsetnx(key: String!, field: String!, value: JSON!): Int
   }

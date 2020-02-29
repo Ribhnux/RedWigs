@@ -24,7 +24,10 @@ export const _smove: ResolverFunction<SMoveArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Move a member from one set to another. [Read more >>](https://redis.io/commands/smove)
+    **SMOVE source destination member**
+
+    Move a member from one set to another.
+    [Read more >>](https://redis.io/commands/smove)
     """
     _smove(source: String!, destination: String!, member: String!): Int
   }

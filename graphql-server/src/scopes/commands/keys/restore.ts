@@ -40,6 +40,8 @@ export const _restore: ResolverFunction<RestoreArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **RESTORE key ttl serialized-value [REPLACE] [ABSTTL] [IDLETIME seconds] [FREQ frequency]**
+
     Create a key using the provided serialized value, previously obtained using DUMP.
     [Read more >>](https://redis.io/commands/restore)
     """

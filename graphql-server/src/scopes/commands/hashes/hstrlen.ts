@@ -23,7 +23,10 @@ export const _hstrlen: ResolverFunction<HStrlenArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the length of the value of a hash field. [Read more >>](https://redis.io/commands/hstrlen)
+    **HSTRLEN key field**
+
+    Get the length of the value of a hash field.
+    [Read more >>](https://redis.io/commands/hstrlen)
     """
     _hstrlen(key: String!, field: String!): Int
   }

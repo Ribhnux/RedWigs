@@ -22,7 +22,10 @@ export const _hkeys: ResolverFunction<HKeysArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get all the fields in a hash. [Read more >>](https://redis.io/commands/hkeys)
+    **HKEYS key**
+
+    Get all the fields in a hash.
+    [Read more >>](https://redis.io/commands/hkeys)
     """
     _hkeys(key: String!): [String]
   }

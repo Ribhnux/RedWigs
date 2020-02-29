@@ -24,7 +24,10 @@ export const _hincrby: ResolverFunction<HIncrByArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Increment the integer value of a hash field by the given number. [Read more >>](https://redis.io/commands/hincrby)
+    **HINCRBY key field increment**
+
+    Increment the integer value of a hash field by the given number.
+    [Read more >>](https://redis.io/commands/hincrby)
     """
     _hincrby(key: String!, field: String!, increment: Int!): Int
   }

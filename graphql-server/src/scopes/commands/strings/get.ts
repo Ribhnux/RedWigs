@@ -18,6 +18,8 @@ export const _get: ResolverFunction<GetArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **GET key**
+
     Get the value of key. [Read more >>](https://redis.io/commands/get)
     """
     _get(key: String!): String

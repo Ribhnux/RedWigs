@@ -22,7 +22,10 @@ export const _sinter: ResolverFunction<SInterArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Intersect multiple sets. [Read more >>](https://redis.io/commands/sinter)
+    **SINTER key [key ...]**
+
+    Intersect multiple sets.
+    [Read more >>](https://redis.io/commands/sinter)
     """
     _sinter(keys: [String]!): [String]
   }

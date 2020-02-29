@@ -24,7 +24,10 @@ export const _hvals: ResolverFunction<HValsArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get all the values in a hash. [Read more >>](https://redis.io/commands/hvals)
+    **HVALS key**
+
+    Get all the values in a hash.
+    [Read more >>](https://redis.io/commands/hvals)
     """
     _hvals(key: String!): [JSON]
   }

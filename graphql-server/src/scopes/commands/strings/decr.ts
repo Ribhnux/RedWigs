@@ -22,6 +22,8 @@ export const _decr: ResolverFunction<DecrArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **DECR key**
+
     Decrement the integer value of a key by one. [Read more >>](https://redis.io/commands/decr)
     """
     _decr(key: String!): Int

@@ -19,6 +19,8 @@ export const _append: ResolverFunction<AppendArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **APPEND key value**
+
     Append a value to a key. [Read more >>](https://redis.io/commands/append)
     """
     _append(key: String!, value: String!): Int

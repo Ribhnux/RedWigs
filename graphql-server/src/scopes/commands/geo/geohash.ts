@@ -25,7 +25,10 @@ export const _geohash: ResolverFunction<GeoHashArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Returns members of a geospatial index as standard geohash strings. [Read more >>](https://redis.io/commands/geohash)
+    **GEOHASH key member [member ...]**
+
+    Returns members of a geospatial index as standard geohash strings.
+    [Read more >>](https://redis.io/commands/geohash)
     """
     _geohash(key: String!, members: [String!]!): [String]
   }

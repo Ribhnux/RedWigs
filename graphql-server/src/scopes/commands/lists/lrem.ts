@@ -24,6 +24,8 @@ export const _lrem: ResolverFunction<LRemArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **LREM key count element**
+
     Remove elements from a list. [Read more >>](https://redis.io/commands/lrem)
     """
     _lrem(key: String!, count: Int!, element: String!): Int

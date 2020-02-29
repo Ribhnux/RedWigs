@@ -22,7 +22,10 @@ export const _smembers: ResolverFunction<SMembersArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get all the members in a set. [Read more >>](https://redis.io/commands/smembers)
+    **SMEMBERS key**
+
+    Get all the members in a set.
+    [Read more >>](https://redis.io/commands/smembers)
     """
     _smembers(key: String!): [String]
   }

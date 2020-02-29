@@ -32,7 +32,10 @@ export const _sscan: ResolverFunction<SScanArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Incrementally iterate the keys space. [Read more >>](https://redis.io/commands/scan)
+    **SSCAN key cursor [MATCH pattern] [COUNT count]**
+
+    Incrementally iterate the keys space.
+    [Read more >>](https://redis.io/commands/scan)
     """
     _sscan(
       key: String!

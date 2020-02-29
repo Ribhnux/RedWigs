@@ -23,6 +23,8 @@ export const _pfmerge: ResolverFunction<PFMergeArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **PFMERGE destkey sourcekey [sourcekey ...]**
+
     Merge N different HyperLogLogs into a single one.
     [Read more >>](https://redis.io/commands/pfmerge)
     """

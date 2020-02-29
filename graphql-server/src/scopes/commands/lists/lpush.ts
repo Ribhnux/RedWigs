@@ -23,7 +23,10 @@ export const _lpush: ResolverFunction<LPushArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Prepend one or multiple elements to a list. [Read more >>](https://redis.io/commands/lpush)
+    **LPUSH key element [element ...]**
+
+    Prepend one or multiple elements to a list.
+    [Read more >>](https://redis.io/commands/lpush)
     """
     _lpush(key: String!, elements: [String!]!): Int
   }

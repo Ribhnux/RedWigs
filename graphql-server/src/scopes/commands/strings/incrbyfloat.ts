@@ -23,7 +23,10 @@ export const _incrbyfloat: ResolverFunction<IncrByFloatArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Increment the float value of a key by the given amount. [Read more >>](https://redis.io/commands/incrbyfloat)
+    **INCRBYFLOAT key increment**
+
+    Increment the float value of a key by the given amount.
+    [Read more >>](https://redis.io/commands/incrbyfloat)
     """
     _incrbyfloat(key: String!, increment: Float!): RespBulk
   }

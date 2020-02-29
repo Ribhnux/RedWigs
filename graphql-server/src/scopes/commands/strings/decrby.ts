@@ -23,6 +23,8 @@ export const _decrby: ResolverFunction<DecrByArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **DECRBY key decrement**
+
     Decrement the integer value of a key by the given number. [Read more >>](https://redis.io/commands/decrby)
     """
     _decrby(key: String!, decrement: Int!): Int

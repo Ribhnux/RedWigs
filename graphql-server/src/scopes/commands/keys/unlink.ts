@@ -18,7 +18,11 @@ export const _unlink: ResolverFunction<UnlinkArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Delete a key asynchronously in another thread. Otherwise it is just as DEL, but non blocking. [Read more >>](https://redis.io/commands/unlink)
+    **UNLINK key [key ...]**
+
+    Delete a key asynchronously in another thread.
+    Otherwise it is just as DEL, but non blocking.
+    [Read more >>](https://redis.io/commands/unlink)
     """
     _unlink(keys: [String!]!): Int
   }

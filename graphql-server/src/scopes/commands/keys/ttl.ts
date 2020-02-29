@@ -22,7 +22,10 @@ export const _ttl: ResolverFunction<TTLArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the time to live for a key. [Read more >>](https://redis.io/commands/ttl)
+    **TTL key**
+
+    Get the time to live for a key.
+    [Read more >>](https://redis.io/commands/ttl)
     """
     _ttl(key: String!): Int
   }

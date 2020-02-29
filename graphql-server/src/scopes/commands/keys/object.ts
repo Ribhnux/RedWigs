@@ -74,7 +74,10 @@ export const typeDefs = gql`
 
   extend type Query {
     """
-    Inspect the internals of Redis objects. [Read more >>](https://redis.io/commands/object)
+    **OBJECT subcommand [arguments [arguments ...]]**
+
+    Inspect the internals of Redis objects.
+    [Read more >>](https://redis.io/commands/object)
     """
     _object(subcommand: Subcommand!, key: String): RespBulk
   }

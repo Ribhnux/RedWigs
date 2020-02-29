@@ -23,6 +23,8 @@ export const _getbit: ResolverFunction<GetBitArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **GETBIT key offset**
+
     Returns the bit value at offset in the string value stored at key. [Read more >>](https://redis.io/commands/getbit)
     """
     _getbit(key: String!, offset: Int!): Int

@@ -64,6 +64,8 @@ export const _georadiusbymember: ResolverFunction<GeoRadiusByMemberArgs> = async
 export const typeDefs = gql`
   extend type Query {
     """
+    **GEORADIUSBYMEMBER key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC] [STORE key] [STOREDIST key]**
+
     Query a sorted set representing a geospatial index to fetch members
     matching a given maximum distance from a member.
     [Read more >>](https://redis.io/commands/georadiusbymember)

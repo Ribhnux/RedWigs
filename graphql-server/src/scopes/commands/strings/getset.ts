@@ -19,6 +19,8 @@ export const _getset: ResolverFunction<GetSetArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **GETSET key value**
+
     Set the string value of a key and return its old value. [Read more >>](https://redis.io/commands/getset)
     """
     _getset(key: String!, value: String!): RespBulk

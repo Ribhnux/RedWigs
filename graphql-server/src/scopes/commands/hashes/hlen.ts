@@ -22,7 +22,10 @@ export const _hlen: ResolverFunction<HLenArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the number of fields in a hash. [Read more >>](https://redis.io/commands/hlen)
+    **HLEN key**
+
+    Get the number of fields in a hash.
+    [Read more >>](https://redis.io/commands/hlen)
     """
     _hlen(key: String!): Int
   }

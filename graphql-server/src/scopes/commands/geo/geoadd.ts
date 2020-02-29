@@ -49,6 +49,8 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
+    **GEOADD key longitude latitude member [longitude latitude member ...]**
+
     Add one or more geospatial items in the geospatial index represented using a sorted set.
     [Read more >>](https://redis.io/commands/geoadd)
     """

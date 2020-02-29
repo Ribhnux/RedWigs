@@ -29,7 +29,10 @@ export const _hmget: ResolverFunction<HMGetArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the values of all the given hash fields. [Read more >>](https://redis.io/commands/hmget)
+    **HMGET key field [field ...]**
+
+    Get the values of all the given hash fields.
+    [Read more >>](https://redis.io/commands/hmget)
     """
     _hmget(key: String!, fields: [String!]!): JSON
   }

@@ -23,7 +23,10 @@ export const _expireat: ResolverFunction<ExpireAtArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set the expiration for a key as a UNIX timestamp. [Read more >>](https://redis.io/commands/expireat)
+    **EXPIREAT key timestamp**
+
+    Set the expiration for a key as a UNIX timestamp.
+    [Read more >>](https://redis.io/commands/expireat)
     """
     _expireat(key: String!, timestamp: Int!): Int
   }

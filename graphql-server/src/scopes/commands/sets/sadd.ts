@@ -23,7 +23,10 @@ export const _sadd: ResolverFunction<SAddArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Add one or more members to a set. [Read more >>](https://redis.io/commands/sadd)
+    **SADD key member [member ...]**
+
+    Add one or more members to a set.
+    [Read more >>](https://redis.io/commands/sadd)
     """
     _sadd(key: String!, members: [String!]!): Int
   }

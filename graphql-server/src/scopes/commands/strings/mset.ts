@@ -31,7 +31,10 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
-    Set multiple keys to multiple values. [Read more >>](https://redis.io/commands/mset)
+    **MSET key value [key value ...]**
+
+    Set multiple keys to multiple values.
+    [Read more >>](https://redis.io/commands/mset)
     """
     _mset(data: JSON!): OK
   }

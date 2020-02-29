@@ -22,6 +22,8 @@ export const _echo: ResolverFunction<EchoArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **ECHO message**
+    
     Echo the given string. [Read more >>](https://redis.io/commands/echo)
     """
     _echo(message: String!): String

@@ -25,7 +25,10 @@ export const _srandmember: ResolverFunction<SRandMemberArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get one or multiple random members from a set. [Read more >>](https://redis.io/commands/srandmember)
+    **SRANDMEMBER key [count]**
+
+    Get one or multiple random members from a set.
+    [Read more >>](https://redis.io/commands/srandmember)
     """
     _srandmember(key: String!, count: Int): JSON
   }

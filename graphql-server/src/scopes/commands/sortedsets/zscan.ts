@@ -32,6 +32,8 @@ export const _zscan: ResolverFunction<ZScanArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **ZSCAN key cursor [MATCH pattern] [COUNT count]**
+
     Incrementally iterate sorted sets elements and associated scores.
     [Read more >>](https://redis.io/commands/zscan)
     """

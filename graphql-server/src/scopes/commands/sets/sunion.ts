@@ -22,6 +22,8 @@ export const _sunion: ResolverFunction<SUnionArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **SUNION key [key ...]**
+
     Add multiple sets. [Read more >>](https://redis.io/commands/sunion)
     """
     _sunion(keys: [String!]!): [String]

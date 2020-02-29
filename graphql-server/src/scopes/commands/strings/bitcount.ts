@@ -28,6 +28,8 @@ export const _bitcount: ResolverFunction<BitCountArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **BITCOUNT key [start end]**
+
     Count set bits in a string. [Read more >>](https://redis.io/commands/bitcount)
     """
     _bitcount(key: String!, start: Int, end: Int): Int

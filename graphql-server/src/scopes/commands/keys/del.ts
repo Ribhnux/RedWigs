@@ -18,6 +18,8 @@ export const _del: ResolverFunction<DelArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **DEL key [key ...]**
+
     Delete a key. [Read more >>](https://redis.io/commands/del)
     """
     _del(keys: [String!]!): Int

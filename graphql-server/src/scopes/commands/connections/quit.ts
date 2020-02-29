@@ -22,6 +22,8 @@ export const _quit: ResolverFunction<any> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **QUIT**
+
     Close the connection. [Read more >>](https://redis.io/commands/quit)
     """
     _quit: String

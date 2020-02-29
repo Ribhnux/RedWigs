@@ -111,7 +111,10 @@ export const typeDefs = gql`
 
   extend type Query {
     """
-    Incrementally iterate the keys space. [Read more >>](https://redis.io/commands/scan)
+    **SCAN cursor [MATCH pattern] [COUNT count] [TYPE type]**
+
+    Incrementally iterate the keys space.
+    [Read more >>](https://redis.io/commands/scan)
     """
     _scan(
       cursor: Int!

@@ -40,7 +40,10 @@ export const typeDefs = gql`
 
   extend type Query {
     """
-    Determine the type stored at key. [Read more >>](https://redis.io/commands/type)
+    **TYPE key**
+
+    Determine the type stored at key.
+    [Read more >>](https://redis.io/commands/type)
     """
     _type(key: String!): KeyType
   }

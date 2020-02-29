@@ -24,7 +24,10 @@ export const _ltrim: ResolverFunction<LTrimArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Trim a list to the specified range. [Read more >>](https://redis.io/commands/ltrim)
+    **LTRIM key start stop**
+
+    Trim a list to the specified range.
+    [Read more >>](https://redis.io/commands/ltrim)
     """
     _ltrim(key: String!, start: Int!, stop: Int!): String
   }

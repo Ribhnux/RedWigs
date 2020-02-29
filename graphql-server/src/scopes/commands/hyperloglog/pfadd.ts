@@ -23,7 +23,10 @@ export const _pfadd: ResolverFunction<PFAddArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Adds the specified elements to the specified HyperLogLog. [Read more >>](https://redis.io/commands/pfadd)
+    **PFADD key element [element ...]**
+
+    Adds the specified elements to the specified HyperLogLog.
+    [Read more >>](https://redis.io/commands/pfadd)
     """
     _pfadd(key: String!, elements: [String!]!): Int
   }

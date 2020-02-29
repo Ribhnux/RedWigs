@@ -52,6 +52,8 @@ export const typeDefs = gql`
 
   extend type Mutation {
     """
+    **SET key value [EX seconds|PX milliseconds] [NX|XX] [KEEPTTL]**
+
     Set key to hold the string value. [Read more >>](https://redis.io/commands/set)
     """
     _set(

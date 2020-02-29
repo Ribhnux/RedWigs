@@ -22,7 +22,10 @@ export const _sdiff: ResolverFunction<SDiffArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Subtract multiple sets. [Read more >>](https://redis.io/commands/sdiff)
+    **SDIFF key [key ...]**
+
+    Subtract multiple sets.
+    [Read more >>](https://redis.io/commands/sdiff)
     """
     _sdiff(keys: [String]!): [String]
   }

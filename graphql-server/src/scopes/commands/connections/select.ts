@@ -22,6 +22,8 @@ export const _select: ResolverFunction<SelectArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **SELECT index**
+
     Change the selected database for the current connection. [Read more >>](https://redis.io/commands/select)
     """
     _select(index: Int!): String

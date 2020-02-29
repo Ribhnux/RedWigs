@@ -23,7 +23,10 @@ export const _hexists: ResolverFunction<HExistsArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Determine if a hash field exists. [Read more >>](https://redis.io/commands/hexists)
+    **HEXISTS key field**
+
+    Determine if a hash field exists.
+    [Read more >>](https://redis.io/commands/hexists)
     """
     _hexists(key: String!, field: String!): Int
   }
