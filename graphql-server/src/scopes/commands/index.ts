@@ -47,6 +47,11 @@ import {
   typeDefs as pubsubsTypeDefs
 } from "./pubsub";
 
+import {
+  resolvers as scriptingCommandResolvers,
+  typeDefs as scriptingTypeDefs
+} from "./scripting";
+
 const redisRootTypeDefs = gql`
   scalar OK
   scalar Errors
@@ -90,7 +95,8 @@ export const typeDefs = [
   ...hyperLogLogTypeDefs,
   ...listTypeDefs,
   ...sortedSetsTypeDefs,
-  ...pubsubsTypeDefs
+  ...pubsubsTypeDefs,
+  ...scriptingTypeDefs
 ];
 
 export const resolvers = {
@@ -104,7 +110,8 @@ export const resolvers = {
     ...hyperLogLogCommandResolver.Query,
     ...listCommandResolver.Query,
     ...sortedSetsCommandResolver.Query,
-    ...pubsubCommandResolver.Query
+    ...pubsubCommandResolver.Query,
+    ...scriptingCommandResolvers.Query
   },
   Mutation: {
     ...stringCommandResolvers.mutation,
@@ -116,7 +123,8 @@ export const resolvers = {
     ...hyperLogLogCommandResolver.Mutation,
     ...listCommandResolver.Mutation,
     ...sortedSetsCommandResolver.Mutation,
-    ...pubsubCommandResolver.Mutation
+    ...pubsubCommandResolver.Mutation,
+    ...scriptingCommandResolvers.Mutation
   },
   Subscription: {
     ...pubsubCommandResolver.Subscription
