@@ -19,7 +19,7 @@ const PORT = 4000;
 const app = express();
 const httpServer = http.createServer(app);
 
-app.use("/", (req: Request, res: Response) =>
+app.get("/", (req: Request, res: Response) =>
   res
     .status(404)
     .send({ message: "Resource Not Found", endpoints: { graphql: "/graphql" } })
