@@ -22,7 +22,10 @@ export const _persist: ResolverFunction<PersistArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Remove the expiration from a key. [Read more >>](https://redis.io/commands/persist)
+    **PERSIST key**
+
+    Remove the expiration from a key.
+    [Read more >>](https://redis.io/commands/persist)
     """
     _persist(key: String!): Int
   }

@@ -23,7 +23,10 @@ export const _move: ResolverFunction<MoveArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Move a key to another database. [Read more >>](https://redis.io/commands/move)
+    **MOVE key db**
+
+    Move a key to another database.
+    [Read more >>](https://redis.io/commands/move)
     """
     _move(key: String!, db: String!): Int
   }

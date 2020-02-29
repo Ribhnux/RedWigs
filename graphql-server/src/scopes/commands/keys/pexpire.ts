@@ -23,7 +23,10 @@ export const _pexpire: ResolverFunction<PExpireArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set a key's time to live in milliseconds. [Read more >>](https://redis.io/commands/pexpire)
+    **PEXPIRE key milliseconds**
+
+    Set a key's time to live in milliseconds.
+    [Read more >>](https://redis.io/commands/pexpire)
     """
     _pexpire(key: String!, milliseconds: Int!): Int
   }

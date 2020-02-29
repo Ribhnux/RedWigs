@@ -22,7 +22,10 @@ export const _keys: ResolverFunction<KeysArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Find all keys matching the given pattern. [Read more >>](https://redis.io/commands/keys)
+    **KEYS pattern**
+
+    Find all keys matching the given pattern.
+    [Read more >>](https://redis.io/commands/keys)
     """
     _keys(pattern: String!): [String]
   }

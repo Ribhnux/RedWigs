@@ -18,6 +18,8 @@ export const _exists: ResolverFunction<ExistsArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **EXISTS key [key ...]**
+
     Determine if a key exists. [Read more >>](https://redis.io/commands/exists)
     """
     _exists(keys: [String!]!): Int

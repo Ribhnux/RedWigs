@@ -22,7 +22,10 @@ export const _randomkey: ResolverFunction<any> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Return a random key from the keyspace. [Read more >>](https://redis.io/commands/randomkey)
+    **RANDOMKEY**
+
+    Return a random key from the keyspace.
+    [Read more >>](https://redis.io/commands/randomkey)
     """
     _randomkey: String
   }

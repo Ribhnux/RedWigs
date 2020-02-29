@@ -27,6 +27,8 @@ export const _pexpireat: ResolverFunction<PExpireAtArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **PEXPIREAT key milliseconds-timestamp**
+
     Set the expiration for a key as a UNIX timestamp specified in milliseconds.
     [Read more >>](https://redis.io/commands/pexpireat)
     """

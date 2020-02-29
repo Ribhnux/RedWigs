@@ -22,6 +22,9 @@ export const _touch: ResolverFunction<TouchArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **TOUCH key [key ...]**
+
+
     Alters the last access time of a key(s). Returns the number of existing keys specified..
     [Read more >>](https://redis.io/commands/touch)
     """

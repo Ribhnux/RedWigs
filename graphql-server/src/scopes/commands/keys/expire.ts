@@ -23,7 +23,10 @@ export const _expire: ResolverFunction<ExpireArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set a key's time to live in seconds. [Read more >>](https://redis.io/commands/expire)
+    **EXPIRE key seconds**
+
+    Set a key's time to live in seconds.
+    [Read more >>](https://redis.io/commands/expire)
     """
     _expire(key: String!, seconds: Int!): Int
   }

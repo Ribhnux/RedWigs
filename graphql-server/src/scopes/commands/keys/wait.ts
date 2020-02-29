@@ -22,7 +22,10 @@ export const _wait: ResolverFunction<WaitArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Wait for the synchronous replication of all the write commands sent in the context of the current connection. [Read more >>](https://redis.io/commands/wait)
+    **WAIT numreplicas timeout**
+
+    Wait for the synchronous replication of all the write commands sent in the context of the current connection.
+    [Read more >>](https://redis.io/commands/wait)
     """
     _wait(numreplicas: Int!, timeout: Int!): Int
   }

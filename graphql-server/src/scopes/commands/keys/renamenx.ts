@@ -23,7 +23,10 @@ export const _renamenx: ResolverFunction<RenameNXArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Rename a key, only if the new key does not exist. [Read more >>](https://redis.io/commands/renamenx)
+    **RENAMENX key newkey**
+
+    Rename a key, only if the new key does not exist.
+    [Read more >>](https://redis.io/commands/renamenx)
     """
     _renamenx(key: String!, newkey: String!): Int
   }

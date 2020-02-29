@@ -23,6 +23,8 @@ export const _rename: ResolverFunction<RenameArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **RENAME key newkey**
+
     Rename a key. [Read more >>](https://redis.io/commands/rename)
     """
     _rename(key: String!, newkey: String!): String

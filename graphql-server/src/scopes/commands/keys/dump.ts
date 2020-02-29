@@ -30,7 +30,10 @@ export const _dump: ResolverFunction<DelArg> = (
 export const typeDefs = gql`
   extend type Query {
     """
-    Return a serialized version of the value stored at the specified key. [Read more >>](https://redis.io/commands/dump)
+    **DUMP key**
+
+    Return a serialized version of the value stored at the specified key.
+    [Read more >>](https://redis.io/commands/dump)
     """
     _dump(key: String!): String
   }

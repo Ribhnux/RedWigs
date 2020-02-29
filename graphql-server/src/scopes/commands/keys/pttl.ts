@@ -22,7 +22,10 @@ export const _pttl: ResolverFunction<PTTLArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get the time to live for a key in milliseconds. [Read more >>](https://redis.io/commands/pttl)
+    **PTTL key**
+
+    Get the time to live for a key in milliseconds.
+    [Read more >>](https://redis.io/commands/pttl)
     """
     _pttl(key: String!): Int
   }
