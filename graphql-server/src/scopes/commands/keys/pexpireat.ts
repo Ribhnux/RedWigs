@@ -20,7 +20,7 @@ export const _pexpireat: ResolverFunction<PExpireAtArg> = async (
     );
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

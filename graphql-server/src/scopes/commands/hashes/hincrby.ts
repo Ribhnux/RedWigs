@@ -17,7 +17,7 @@ export const _hincrby: ResolverFunction<HIncrByArg> = async (
     const reply = await redisClient.hincrby(key, field, increment);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

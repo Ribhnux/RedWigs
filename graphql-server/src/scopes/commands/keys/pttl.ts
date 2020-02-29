@@ -15,7 +15,7 @@ export const _pttl: ResolverFunction<PTTLArg> = async (
     const reply = await redisClient.pttl(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

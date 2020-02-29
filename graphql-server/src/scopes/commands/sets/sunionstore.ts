@@ -16,7 +16,7 @@ export const _sunionstore: ResolverFunction<SUnionStoreArg> = async (
     const reply = await redisClient.sunionstore(destination, ...keys);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

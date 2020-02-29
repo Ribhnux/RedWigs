@@ -16,7 +16,7 @@ export const _pfmerge: ResolverFunction<PFMergeArgs> = async (
     const reply = await redisClient.pfmerge(destkey, ...sourcekey);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

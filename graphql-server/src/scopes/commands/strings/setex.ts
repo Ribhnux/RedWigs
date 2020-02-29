@@ -17,7 +17,7 @@ export const _setex: ResolverFunction<SetExArgs> = async (
     const reply = await redisClient.setex(key, seconds, value);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

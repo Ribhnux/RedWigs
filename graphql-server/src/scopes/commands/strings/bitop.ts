@@ -29,7 +29,7 @@ export const _bitop: ResolverFunction<BitOpArgs> = async (
     const reply = await redisClient.send_command("bitop", ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

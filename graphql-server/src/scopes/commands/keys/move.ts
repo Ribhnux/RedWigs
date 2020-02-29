@@ -16,7 +16,7 @@ export const _move: ResolverFunction<MoveArg> = async (
     const reply = await redisClient.move(key, db);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

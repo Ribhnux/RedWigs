@@ -16,7 +16,7 @@ export const _expireat: ResolverFunction<ExpireAtArg> = async (
     const reply = await redisClient.expireat(key, timestamp);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

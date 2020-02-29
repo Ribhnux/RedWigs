@@ -16,7 +16,7 @@ export const _pexpire: ResolverFunction<PExpireArg> = async (
     const reply = await redisClient.pexpire(key, milliseconds);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -21,7 +21,7 @@ export const _bitcount: ResolverFunction<BitCountArgs> = async (
     const reply = await redisClient.send_command("bitcount", ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

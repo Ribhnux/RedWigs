@@ -25,7 +25,7 @@ export const _object: ResolverFunction<ObjectArg> = async (
     const reply = await redisClient.object(subcommand, ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

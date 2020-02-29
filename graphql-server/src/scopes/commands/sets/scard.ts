@@ -15,7 +15,7 @@ export const _scard: ResolverFunction<SCardArg> = async (
     const reply = await redisClient.scard(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

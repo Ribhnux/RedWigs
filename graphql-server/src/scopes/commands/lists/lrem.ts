@@ -17,7 +17,7 @@ export const _lrem: ResolverFunction<LRemArgs> = async (
     const reply = await redisClient.lrem(key, count, element);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

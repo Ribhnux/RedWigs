@@ -17,7 +17,7 @@ export const _ltrim: ResolverFunction<LTrimArgs> = async (
     const reply = await redisClient.ltrim(key, start, stop);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

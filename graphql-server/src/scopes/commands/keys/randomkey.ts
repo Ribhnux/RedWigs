@@ -15,7 +15,7 @@ export const _randomkey: ResolverFunction<any> = async (
     const reply = await redisClient.randomkey();
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

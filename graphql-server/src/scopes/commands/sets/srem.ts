@@ -16,7 +16,7 @@ export const _srem: ResolverFunction<SRemArg> = async (
     const reply = await redisClient.srem(key, ...members);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

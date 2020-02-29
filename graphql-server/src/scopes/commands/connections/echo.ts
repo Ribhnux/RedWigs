@@ -15,7 +15,7 @@ export const _echo: ResolverFunction<EchoArg> = async (
     const value = await redisClient.echo(message);
     return value;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

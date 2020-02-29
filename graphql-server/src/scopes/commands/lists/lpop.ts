@@ -15,7 +15,7 @@ export const _lpop: ResolverFunction<LPopArgs> = async (
     const reply = await redisClient.lpop(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

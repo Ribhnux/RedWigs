@@ -16,7 +16,7 @@ export const _incrbyfloat: ResolverFunction<IncrByFloatArg> = async (
     const reply = await redisClient.incrbyfloat(key, increment);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

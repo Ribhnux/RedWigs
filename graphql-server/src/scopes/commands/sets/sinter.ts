@@ -15,7 +15,7 @@ export const _sinter: ResolverFunction<SInterArg> = async (
     const reply = await redisClient.sinter(...keys);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

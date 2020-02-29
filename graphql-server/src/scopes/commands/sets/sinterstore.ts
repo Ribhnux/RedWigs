@@ -16,7 +16,7 @@ export const _sinterstore: ResolverFunction<SInterStoreArg> = async (
     const reply = await redisClient.sinterstore(destination, ...keys);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

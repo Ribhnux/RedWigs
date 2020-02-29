@@ -16,7 +16,7 @@ export const _hstrlen: ResolverFunction<HStrlenArg> = async (
     const reply = await redisClient.send_command("hstrlen", key, field);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -98,7 +98,7 @@ export const _scan: ResolverFunction<ScanArg> = async (
   try {
     return await doScan({ scanCommand: ScanType.SCAN, args });
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

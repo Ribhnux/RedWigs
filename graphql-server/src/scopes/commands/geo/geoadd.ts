@@ -36,7 +36,7 @@ export const _geoadd: ResolverFunction<GeoAddArgs> = async (
     const reply = await redisClient.send_command("geoadd", key, ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

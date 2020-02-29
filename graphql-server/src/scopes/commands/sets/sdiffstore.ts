@@ -16,7 +16,7 @@ export const _sdiffstore: ResolverFunction<SDiffStoreArg> = async (
     const reply = await redisClient.sdiffstore(destination, ...keys);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

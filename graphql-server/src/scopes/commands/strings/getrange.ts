@@ -17,7 +17,7 @@ export const _getrange: ResolverFunction<GetRangeArg> = async (
     const reply = await redisClient.getrange(key, start, end);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

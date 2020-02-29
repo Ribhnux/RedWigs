@@ -18,7 +18,7 @@ export const _srandmember: ResolverFunction<SRandMemberArg> = async (
       : await redisClient.srandmember(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

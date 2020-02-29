@@ -19,7 +19,7 @@ export const _hsetnx: ResolverFunction<HSetNXArg> = async (
     const reply = await redisClient.hsetnx(key, field, _value);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -16,7 +16,7 @@ export const _decrby: ResolverFunction<DecrByArg> = async (
     const reply = await redisClient.decrby(key, decrement);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

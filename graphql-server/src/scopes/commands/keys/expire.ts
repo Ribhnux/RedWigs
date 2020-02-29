@@ -16,7 +16,7 @@ export const _expire: ResolverFunction<ExpireArg> = async (
     const reply = await redisClient.expire(key, seconds);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

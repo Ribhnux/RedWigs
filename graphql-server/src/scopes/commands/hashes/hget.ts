@@ -18,7 +18,7 @@ export const _hget: ResolverFunction<HGetArg> = async (
     const _reply = parseJSONOrKeep(reply);
     return _reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

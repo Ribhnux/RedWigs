@@ -24,7 +24,7 @@ export const _hscan: ResolverFunction<HScanArg> = async (
   try {
     return await doScan({ scanCommand: ScanType.HSCAN, args });
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

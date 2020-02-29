@@ -16,7 +16,7 @@ export const _renamenx: ResolverFunction<RenameNXArg> = async (
     const reply = await redisClient.renamenx(key, newkey);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

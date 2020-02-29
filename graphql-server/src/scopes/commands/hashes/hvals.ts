@@ -17,7 +17,7 @@ export const _hvals: ResolverFunction<HValsArg> = async (
     const result = reply.map(v => parseJSONOrKeep(v));
     return result;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 
