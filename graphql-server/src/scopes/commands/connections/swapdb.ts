@@ -16,7 +16,7 @@ export const _swapdb: ResolverFunction<SwapDBArg> = async (
     const value = await redisClient.send_command("swapdb", ...[index1, index2]);
     return value;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

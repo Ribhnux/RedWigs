@@ -16,7 +16,7 @@ export const _sismember: ResolverFunction<SIsMemberArg> = async (
     const reply = await redisClient.sismember(key, member);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

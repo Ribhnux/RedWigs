@@ -15,7 +15,7 @@ export const _touch: ResolverFunction<TouchArg> = async (
     const reply = await redisClient.send_command("touch", ...keys);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

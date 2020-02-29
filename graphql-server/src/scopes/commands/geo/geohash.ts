@@ -18,7 +18,7 @@ export const _geohash: ResolverFunction<GeoHashArgs> = async (
     const reply = await redisClient.send_command("geohash", ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -16,7 +16,7 @@ export const _lindex: ResolverFunction<LIndexArgs> = async (
     const reply = await redisClient.lindex(key, index);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

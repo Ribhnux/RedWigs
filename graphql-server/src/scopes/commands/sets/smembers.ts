@@ -15,7 +15,7 @@ export const _smembers: ResolverFunction<SMembersArg> = async (
     const reply = await redisClient.smembers(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -15,7 +15,7 @@ export const _decr: ResolverFunction<DecrArg> = async (
     const reply = await redisClient.decr(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

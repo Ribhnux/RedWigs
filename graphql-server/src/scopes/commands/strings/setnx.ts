@@ -16,7 +16,7 @@ export const _setnx: ResolverFunction<SetNXArg> = async (
     const reply = await redisClient.setnx(key, value);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

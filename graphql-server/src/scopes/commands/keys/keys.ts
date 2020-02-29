@@ -15,7 +15,7 @@ export const _keys: ResolverFunction<KeysArg> = async (
     const reply = await redisClient.keys(pattern);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

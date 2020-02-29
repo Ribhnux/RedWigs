@@ -175,7 +175,7 @@ export const _bitfield: ResolverFunction<BitFieldArgs> = async (
     const reply = await redisClient.send_command("bitfield", ...commandArgs);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

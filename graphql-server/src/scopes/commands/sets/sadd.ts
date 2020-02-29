@@ -16,7 +16,7 @@ export const _sadd: ResolverFunction<SAddArg> = async (
     const reply = await redisClient.sadd(key, ...members);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

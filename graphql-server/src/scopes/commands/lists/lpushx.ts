@@ -17,7 +17,7 @@ export const _lpushx: ResolverFunction<LPushXArgs> = async (
     const reply = await redisClient.send_command("lpushx", ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

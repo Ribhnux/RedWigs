@@ -16,7 +16,7 @@ export const _rpoplpush: ResolverFunction<RPopLPushArgs> = async (
     const reply = await redisClient.rpoplpush(source, destination);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

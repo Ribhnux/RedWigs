@@ -15,7 +15,7 @@ export const _msetnx: ResolverFunction<MSetNXArg> = async (
     const reply = await redisClient.msetnx(data);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

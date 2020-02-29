@@ -18,7 +18,7 @@ export const _spop: ResolverFunction<SPopArg> = async (
       : redisClient.spop(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

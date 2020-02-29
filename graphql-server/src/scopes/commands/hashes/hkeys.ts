@@ -15,7 +15,7 @@ export const _hkeys: ResolverFunction<HKeysArg> = async (
     const reply = await redisClient.hkeys(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -25,7 +25,7 @@ export const _sscan: ResolverFunction<SScanArg> = async (
   try {
     return await doScan({ scanCommand: ScanType.SSCAN, args });
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

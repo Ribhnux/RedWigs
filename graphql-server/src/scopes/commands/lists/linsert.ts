@@ -23,7 +23,7 @@ export const _linsert: ResolverFunction<LInsertArgs> = async (
     const reply = await redisClient.linsert(key, ref, pivot, element);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

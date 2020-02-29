@@ -17,7 +17,7 @@ export const _brpop: ResolverFunction<BRPopArgs> = async (
     const reply = await redisClient.send_command("brpop", ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

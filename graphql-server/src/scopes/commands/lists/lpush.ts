@@ -16,7 +16,7 @@ export const _lpush: ResolverFunction<LPushArgs> = async (
     const reply = await redisClient.lpush(key, ...elements);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

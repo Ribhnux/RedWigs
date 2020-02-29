@@ -24,7 +24,7 @@ export const _type: ResolverFunction<TypeArg> = async (
     const reply = await redisClient.type(key);
     return reply as KeyType;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

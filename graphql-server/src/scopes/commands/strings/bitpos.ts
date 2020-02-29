@@ -9,8 +9,6 @@ export type BitPosArgs = {
   end?: number;
 };
 
-
-
 export const _bitpos: ResolverFunction<BitPosArgs> = async (
   root,
   { key, bit, start, end },
@@ -24,7 +22,7 @@ export const _bitpos: ResolverFunction<BitPosArgs> = async (
     const reply = await redisClient.send_command("bitpos", ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -17,7 +17,7 @@ export const _hdel: ResolverFunction<HDelArgs> = async (
     const reply = await redisClient.hdel(key, ...fields);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -27,7 +27,7 @@ export const _geodist: ResolverFunction<GeoDistArgs> = async (
     const reply = await redisClient.send_command("geodist", ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

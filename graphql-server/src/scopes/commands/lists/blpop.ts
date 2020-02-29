@@ -17,7 +17,7 @@ export const _blpop: ResolverFunction<BLPopArgs> = async (
     const reply = await redisClient.send_command("blpop", ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

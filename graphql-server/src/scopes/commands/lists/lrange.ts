@@ -17,7 +17,7 @@ export const _lrange: ResolverFunction<LRangeArgs> = async (
     const reply = await redisClient.lrange(key, start, stop);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

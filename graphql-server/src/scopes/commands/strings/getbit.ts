@@ -16,7 +16,7 @@ export const _getbit: ResolverFunction<GetBitArg> = async (
     const reply = await redisClient.getbit(key, offset);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

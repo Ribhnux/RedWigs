@@ -33,7 +33,7 @@ export const _restore: ResolverFunction<RestoreArg> = async (
     const reply = await redisClient.restore(...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

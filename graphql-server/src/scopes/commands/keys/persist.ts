@@ -15,7 +15,7 @@ export const _persist: ResolverFunction<PersistArg> = async (
     const reply = await redisClient.persist(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

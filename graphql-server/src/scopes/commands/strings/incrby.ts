@@ -16,7 +16,7 @@ export const _incrby: ResolverFunction<IncrByArg> = async (
     const reply = await redisClient.incrby(key, increment);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -15,7 +15,7 @@ export const _select: ResolverFunction<SelectArg> = async (
     const value = await redisClient.select(index);
     return value;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

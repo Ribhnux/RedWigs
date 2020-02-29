@@ -15,7 +15,7 @@ export const _hlen: ResolverFunction<HLenArg> = async (
     const reply = await redisClient.hlen(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

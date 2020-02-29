@@ -20,7 +20,7 @@ export const _hset: ResolverFunction<HSetArg> = async (
     const reply = await redisClient.send_command("hset", key, ...args);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

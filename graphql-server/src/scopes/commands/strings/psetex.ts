@@ -17,7 +17,7 @@ export const _psetex: ResolverFunction<PSetExArgs> = async (
     const reply = await redisClient.psetex(key, milliseconds, value);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

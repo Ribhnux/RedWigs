@@ -15,7 +15,7 @@ export const _quit: ResolverFunction<any> = async (
     const value = await redisClient.quit();
     return value;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

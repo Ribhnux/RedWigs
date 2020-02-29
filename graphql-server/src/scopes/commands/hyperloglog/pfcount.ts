@@ -15,7 +15,7 @@ export const _pfcount: ResolverFunction<PFCountArgs> = async (
     const reply = await redisClient.pfcount(...keys);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

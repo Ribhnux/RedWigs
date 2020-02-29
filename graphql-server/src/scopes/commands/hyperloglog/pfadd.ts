@@ -16,7 +16,7 @@ export const _pfadd: ResolverFunction<PFAddArgs> = async (
     const reply = await redisClient.pfadd(key, ...elements);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

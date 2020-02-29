@@ -17,7 +17,7 @@ export const _ping: ResolverFunction<PingArg> = async (
       : await redisClient.ping();
     return value;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

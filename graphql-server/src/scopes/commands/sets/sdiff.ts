@@ -15,7 +15,7 @@ export const _sdiff: ResolverFunction<SDiffArg> = async (
     const reply = await redisClient.sdiff(...keys);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -15,7 +15,7 @@ export const _incr: ResolverFunction<IncrArg> = async (
     const reply = await redisClient.incr(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

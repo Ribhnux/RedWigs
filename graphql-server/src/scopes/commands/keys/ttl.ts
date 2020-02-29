@@ -15,7 +15,7 @@ export const _ttl: ResolverFunction<TTLArg> = async (
     const reply = await redisClient.ttl(key);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

@@ -17,7 +17,7 @@ export const _lset: ResolverFunction<LSetArgs> = async (
     const reply = await redisClient.lset(key, index, element);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

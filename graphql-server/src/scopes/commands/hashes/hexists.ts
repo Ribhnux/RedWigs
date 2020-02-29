@@ -16,7 +16,7 @@ export const _hexists: ResolverFunction<HExistsArg> = async (
     const reply = await redisClient.hexists(key, field);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

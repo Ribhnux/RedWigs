@@ -22,7 +22,7 @@ export const _brpoplpush: ResolverFunction<BRPopLPushArgs> = async (
     );
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

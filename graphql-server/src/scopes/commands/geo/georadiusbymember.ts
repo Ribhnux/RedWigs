@@ -57,7 +57,7 @@ export const _georadiusbymember: ResolverFunction<GeoRadiusByMemberArgs> = async
 
     return result;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

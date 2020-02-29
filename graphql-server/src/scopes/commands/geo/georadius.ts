@@ -102,7 +102,7 @@ export const _georadius: ResolverFunction<GeoRadiusArgs> = async (
 
     return result;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

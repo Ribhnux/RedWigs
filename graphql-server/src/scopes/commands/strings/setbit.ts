@@ -17,7 +17,7 @@ export const _setbit: ResolverFunction<SetBitArg> = async (
     const reply = await redisClient.setbit(key, offset, value);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 

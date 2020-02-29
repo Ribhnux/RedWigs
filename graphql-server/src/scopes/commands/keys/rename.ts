@@ -16,7 +16,7 @@ export const _rename: ResolverFunction<RenameArg> = async (
     const reply = await redisClient.rename(key, newkey);
     return reply;
   } catch (err) {
-    return err.message;
+    throw new Error(err);
   }
 };
 
