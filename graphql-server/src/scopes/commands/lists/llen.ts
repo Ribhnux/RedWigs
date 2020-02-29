@@ -22,6 +22,8 @@ export const _llen: ResolverFunction<LLenArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **LLEN key**
+
     Get the length of a list. [Read more >>](https://redis.io/commands/llen)
     """
     _llen(key: String!): Int

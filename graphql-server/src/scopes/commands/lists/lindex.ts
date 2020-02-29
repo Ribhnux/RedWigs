@@ -23,7 +23,10 @@ export const _lindex: ResolverFunction<LIndexArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
-    Get an element from a list by its index. [Read more >>](https://redis.io/commands/lindex)
+    **LINDEX key index**
+
+    Get an element from a list by its index.
+    [Read more >>](https://redis.io/commands/lindex)
     """
     _lindex(key: String!, index: Int!): String
   }

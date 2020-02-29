@@ -34,7 +34,10 @@ export const typeDefs = gql`
   }
   extend type Mutation {
     """
-    Insert an element before or after another element in a list. [Read more >>](https://redis.io/commands/linsert)
+    **LINSERT key BEFORE|AFTER pivot element**
+
+    Insert an element before or after another element in a list.
+    [Read more >>](https://redis.io/commands/linsert)
     """
     _linsert(
       key: String!

@@ -24,7 +24,10 @@ export const _lpushx: ResolverFunction<LPushXArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Prepend an element to a list, only if the list exists. [Read more >>](https://redis.io/commands/lpushx)
+    **LPUSHX key element [element ...]**
+
+    Prepend an element to a list, only if the list exists.
+    [Read more >>](https://redis.io/commands/lpushx)
     """
     _lpushx(key: String!, elements: [String!]!): Int
   }

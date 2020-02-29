@@ -22,7 +22,10 @@ export const _rpop: ResolverFunction<RPopArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Remove and get the last element in a list. [Read more >>](https://redis.io/commands/rpop)
+    **RPOP key**
+
+    Remove and get the last element in a list.
+    [Read more >>](https://redis.io/commands/rpop)
     """
     _rpop(key: String!): String
   }

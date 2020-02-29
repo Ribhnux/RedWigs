@@ -24,7 +24,10 @@ export const _rpushx: ResolverFunction<RPushXArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Append an element to a list, only if the list exists. [Read more >>](https://redis.io/commands/rpushx)
+    **RPUSHX key element [element ...]**
+
+    Append an element to a list, only if the list exists.
+    [Read more >>](https://redis.io/commands/rpushx)
     """
     _rpushx(key: String!, elements: [String!]!): Int
   }

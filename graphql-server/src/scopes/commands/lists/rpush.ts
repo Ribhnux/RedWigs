@@ -23,7 +23,10 @@ export const _rpush: ResolverFunction<RPushArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Append one or multiple elements to a list. [Read more >>](https://redis.io/commands/rpush)
+    **RPUSH key element [element ...]**
+
+    Append one or multiple elements to a list.
+    [Read more >>](https://redis.io/commands/rpush)
     """
     _rpush(key: String!, elements: [String!]!): Int
   }

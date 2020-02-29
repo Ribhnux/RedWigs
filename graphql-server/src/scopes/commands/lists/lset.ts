@@ -24,7 +24,10 @@ export const _lset: ResolverFunction<LSetArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
-    Set the value of an element in a list by its index. [Read more >>](https://redis.io/commands/lset)
+    **LSET key index element**
+
+    Set the value of an element in a list by its index.
+    [Read more >>](https://redis.io/commands/lset)
     """
     _lset(key: String!, index: Int!, element: String!): String
   }

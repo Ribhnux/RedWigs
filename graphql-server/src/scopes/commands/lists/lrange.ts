@@ -24,6 +24,8 @@ export const _lrange: ResolverFunction<LRangeArgs> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **LRANGE key start stop**
+
     Get a range of elements from a list. [Read more >>](https://redis.io/commands/lrange)
     """
     _lrange(key: String!, start: Int!, stop: Int!): [String]

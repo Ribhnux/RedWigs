@@ -22,6 +22,8 @@ export const _lpop: ResolverFunction<LPopArgs> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **LPOP key**
+
     Remove and get the first element in a list. [Read more >>](https://redis.io/commands/lpop)
     """
     _lpop(key: String!): String
