@@ -24,6 +24,8 @@ export const _ping: ResolverFunction<PingArg> = async (
 export const typeDefs = gql`
   extend type Query {
     """
+    **PING [message]**
+
     Ping the server. [Read more >>](https://redis.io/commands/ping)
     """
     _ping(message: String): String

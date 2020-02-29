@@ -23,6 +23,8 @@ export const _swapdb: ResolverFunction<SwapDBArg> = async (
 export const typeDefs = gql`
   extend type Mutation {
     """
+    **SWAPDB index1 index2**
+
     Change the selected database for the current connection. [Read more >>](https://redis.io/commands/swapdb)
     """
     _swapdb(index1: Int!, index2: Int!): String
