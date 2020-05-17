@@ -1,0 +1,155 @@
+.graphiql-container .topBar {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    #171923 80%,
+    #171923 100%
+  );
+  padding: 0.5em;
+  height: auto;
+  border-top: 5px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.graphiql-container .result-window .CodeMirror-gutters {
+  background-color: #171923;
+  border-color: #171923;
+  cursor: col-resize;
+}
+
+.graphiql-container .variable-editor-title {
+  background: #171923;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  color: #fff;
+}
+
+.graphiql-container .doc-explorer-contents {
+  background-color: #1a202c;
+  border-top: 1px solid #171923;
+  border-left: 2px solid #171923;
+  color: #fff;
+}
+
+.graphiql-container .doc-explorer {
+  background: #1a202c;
+}
+
+.graphiql-container .docExplorerShow {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, #171923 100%);
+  border: 1px solid #000;
+  color: #a0aec0;
+}
+
+.graphiql-container .doc-explorer-title-bar {
+  height: auto;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+.graphiql-container .resultWrap {
+  border-left: 1px solid #000;
+}
+
+.graphiql-container .search-box > input {
+  background: #171923;
+  padding: 0.8em;
+  padding-left: 1.5em;
+  color: #fff;
+}
+
+.graphiql-container .docExplorerHide {
+  color: #fff;
+}
+
+.graphiql-container .keyword {
+  color: #c53030;
+}
+
+.graphiql-container .doc-explorer-back {
+  color: #4299e1;
+}
+
+.graphiql-container .title {
+  color: #fff;
+  font-size: 18px;
+}
+
+.cm-s-material-ocean.CodeMirror {
+  font-size: 1rem;
+}
+
+.graphiql-container .execute-button {
+  background: none;
+  background: linear-gradient(
+    180deg,
+    rgb(229, 62, 62) 0%,
+    #c53030 50%,
+    #9b2c2c 100%
+  );
+  box-shadow: 0 1px 0 #9b2c2c;
+  fill: #000;
+}
+
+.graphiql-container .execute-button:active {
+  background: none;
+  background-color: #9b2c2c;
+  background: linear-gradient(
+    180deg,
+    rgb(229, 62, 62) 0%,
+    #c53030 50%,
+    #9b2c2c 100%
+  );
+  box-shadow: 0 1px 0 #000;
+}
+
+.graphiql-container .toolbar-button {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: none;
+  box-shadow: none;
+  border: none;
+  font-weight: 500;
+  display: inline-flex;
+  -webkit-appearance: none;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: 1;
+  height: 1.5rem;
+  min-width: 2.5rem;
+  font-size: 0.96rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: rgb(229, 62, 62);
+  background: linear-gradient(
+    180deg,
+    rgb(229, 62, 62) 0%,
+    #c53030 50%,
+    #9b2c2c 100%
+  );
+  color: #cbd5e0;
+  border-radius: 0.1rem;
+  transition: all 250ms ease 0s;
+  outline: none;
+  text-transform: lowercase;
+}
+
+.graphiql-container .toolbar-button:hover {
+  background-color: #c53030;
+  font-weight: 600;
+  color: #000;
+}
+
+.graphiql-container .toolbar-button:active {
+  background: none;
+  box-shadow: none;
+  box-shadow: #e53e3e;
+  background-color: #9b2c2c;
+}

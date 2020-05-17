@@ -1,0 +1,14 @@
+html,
+body {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  background-color: #1a202c;
+  color: #edf2f7;
+}
+
+#__next {
+  display: flex;
+  flex: 1;
+}
