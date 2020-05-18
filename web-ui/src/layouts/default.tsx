@@ -31,7 +31,7 @@ const LayoutDefault: React.FC<LayoutDefaultProps> = ({
   <>
     <Head>
       <title>
-        Redwigs Admin &raquo; {scope} &raquo; {page}
+        Redwigs Admin &raquo; {_.upperFirst(scope)} &raquo; {_.upperFirst(page)}
       </title>
       <link rel="icon" href="/favicon.png" />
     </Head>
