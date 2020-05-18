@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 
 const CollectionPage = () => {
-  return <div>bababa</div>;
+  return <div>Collection Index Page</div>;
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
