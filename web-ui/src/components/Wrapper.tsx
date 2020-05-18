@@ -14,7 +14,13 @@ export const TopNavWrapper = ({ children }) => (
 );
 
 export const NavWrapper = ({ children }) => (
-  <Flex justifyContent="space-between" bg="gray.900">
+  <Flex
+    justifyContent="space-between"
+    bg="gray.900"
+    borderBottomColor="black"
+    borderBottomWidth="1px"
+    zIndex={999}
+  >
     {children}
   </Flex>
 );
