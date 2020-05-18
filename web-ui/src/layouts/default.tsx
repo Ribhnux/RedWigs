@@ -15,6 +15,8 @@ import { Navigation } from "components/Navigation";
 import { topNavLinks, navLink } from "fixtures/navigation";
 import { pageDescription } from "fixtures/page-desc";
 import Link from "next/link";
+import _ from "lodash";
+import LayoutWrapper from "./LayoutWrapper";
 
 export type LayoutDefaultProps = {
   page: string;
@@ -75,7 +77,11 @@ const LayoutDefault: React.FC<LayoutDefaultProps> = ({
           />
         </HelperWrapper>
       </NavWrapper>
-      <PageWrapper>{children}</PageWrapper>
+      <PageWrapper>
+        <LayoutWrapper scope={scope} page={page}>
+          {children}
+        </LayoutWrapper>
+      </PageWrapper>
     </MainWrapper>
   </>
 );
