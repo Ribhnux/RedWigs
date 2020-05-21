@@ -8,80 +8,115 @@ import {
   ListIcon,
   Icon,
   Link,
+  FlexProps,
+  useTheme,
 } from "@chakra-ui/core";
 import { FaDatabase } from "react-icons/fa";
+import useGlobalThemeScheme from "hooks/global-themes";
+import { ThemeSchemeColors } from "~types/themes";
+
+const PaneTitle = ({ children }) => {
+  const [_, currentThemeScheme] = useGlobalThemeScheme();
+  return (
+    <Flex
+      p={2}
+      bg={currentThemeScheme.selectionBackground}
+      color={currentThemeScheme.selectionForeground}
+      borderColor={currentThemeScheme.border}
+      borderBottomWidth={1}
+    >
+      {children}
+    </Flex>
+  );
+};
+
+const PaneContent: React.FC<FlexProps> = ({ children, ...props }) => {
+  const [_, currentThemeScheme] = useGlobalThemeScheme();
+  return (
+    <Flex p={2} {...props} bg={currentThemeScheme.secondBackground} flex={1}>
+      {children}
+    </Flex>
+  );
+};
+
+const PaneWrapper: React.FC<FlexProps> = ({ children, ...props }) => {
+  const [schemeName, currentThemeScheme] = useGlobalThemeScheme();
+  const { colors } = useTheme();
+  const colorsScheme = colors[schemeName] as ThemeSchemeColors;
+  return (
+    <Flex
+      mr={2}
+      borderColor={currentThemeScheme.border}
+      borderWidth={1}
+      borderTopWidth={0}
+      backgroundColor={currentThemeScheme.secondBackground}
+      {...props}
+      flexDirection="column"
+      boxShadow={`1px 1px 10px ${colorsScheme.border}`}
+    >
+      {children}
+    </Flex>
+  );
+};
 
 const CollectionsWrapper = ({ children }) => {
+  const [_, currentThemeScheme] = useGlobalThemeScheme();
+  console.log(currentThemeScheme);
+
   return (
     <Flex justifyContent="flex-start" flex={1}>
-      <Flex
-        width="5rem"
-        mr={2}
-        backgroundColor="gray.900"
-        flexDirection="column"
-        boxShadow="1px 1px 10px #000"
-      >
-        <Flex p={2} bg="black">
-          Database
-        </Flex>
-        <Flex p={2}>
+      <PaneWrapper>
+        <PaneTitle>Database</PaneTitle>
+        <PaneContent>
           <List spacing={2}>
             <ListItem>
-              <ListIcon icon={FaDatabase} color="gray.500" /> 0
+              <ListIcon
+                icon={FaDatabase}
+                color={currentThemeScheme.foreground}
+              />{" "}
+              0
             </ListItem>
             <ListItem>
-              <ListIcon icon={FaDatabase} color="gray.500" /> 1
+              <ListIcon
+                icon={FaDatabase}
+                color={currentThemeScheme.foreground}
+              />{" "}
+              1
             </ListItem>
             <ListItem>
-              <ListIcon icon={FaDatabase} color="gray.500" /> 2
+              <ListIcon
+                icon={FaDatabase}
+                color={currentThemeScheme.foreground}
+              />{" "}
+              2
             </ListItem>
             <ListItem>
-              <ListIcon icon={FaDatabase} color="gray.500" /> 3
+              <ListIcon
+                icon={FaDatabase}
+                color={currentThemeScheme.foreground}
+              />{" "}
+              3
             </ListItem>
           </List>
-        </Flex>
-      </Flex>
-      <Flex
-        width="15rem"
-        mr={2}
-        backgroundColor="gray.900"
-        flexDirection="column"
-        boxShadow="1px 1px 10px #000, -1px -1px 10px #000"
-      >
-        <Flex p={2} bg="black">
-          Schemas
-        </Flex>
-        <Flex p={2}>empty schema</Flex>
-      </Flex>
-      <Flex
-        width="15rem"
-        backgroundColor="gray.900"
-        mr={2}
-        flexDirection="column"
-        boxShadow="1px 1px 10px #000, -1px -1px 10px #000"
-      >
-        <Flex p={2} bg="black">
-          Collections
-        </Flex>
+        </PaneContent>
+      </PaneWrapper>
+      <PaneWrapper width="15rem">
+        <PaneTitle>Schemas</PaneTitle>
+        <PaneContent>empty schema</PaneContent>
+      </PaneWrapper>
+      <PaneWrapper width="15rem">
+        <PaneTitle>Collections</PaneTitle>
         <Flex p={2}>empty collection</Flex>
-      </Flex>
-      <Flex
-        flex={1}
-        flexDirection="column"
-        backgroundColor="gray.800"
-        borderLeftColor="black"
-        borderLeftWidth="1px"
-        boxShadow="1px 1px 10px #000, -1px -1px 10px #000"
-      >
-        <Flex
-          p={2}
-          bg="black"
-          fontSize="1rem"
-          borderBottomWidth="1px"
-          borderBottomColor="black"
-        >
+      </PaneWrapper>
+      <PaneWrapper flex={1} mr={0}>
+        <PaneTitle>
           <Breadcrumb
-            separator={<Icon color="gray.300" name="chevron-right" />}
+            separator={
+              <Icon
+                color={currentThemeScheme.selectionForeground}
+                name="chevron-right"
+              />
+            }
           >
             <BreadcrumbItem>
               <BreadcrumbLink href="/data/collections/0">DB #0</BreadcrumbLink>
@@ -102,9 +137,9 @@ const CollectionsWrapper = ({ children }) => {
               <BreadcrumbLink>Browse</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
-        </Flex>
-        <Flex p={2}>{children}</Flex>
-      </Flex>
+        </PaneTitle>
+        <PaneContent p={5}>{children}</PaneContent>
+      </PaneWrapper>
     </Flex>
   );
 };

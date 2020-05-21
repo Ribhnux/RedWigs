@@ -38,7 +38,7 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
     return <>{children}</>;
   }
 
-  return null;
+  return <>{children}</>;
 };
 
 export default LayoutWrapper;

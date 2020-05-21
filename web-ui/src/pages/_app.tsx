@@ -1,5 +1,4 @@
 import "graphiql/graphiql.css";
-import "codemirror/theme/material-ocean.css";
 import "../../public/css/global.css";
 import "../../public/css/graphiql-custom.css";
 import "../../public/css/nprogress.css";
@@ -25,12 +24,14 @@ const RedwigsApp = ({ Component, pageProps }: AppProps) => {
   );
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <CSSReset />
-      <LayoutDefault page={page} scope={scope} statusCode={statusCode ?? 404}>
-        {component}
-      </LayoutDefault>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={defaultTheme}>
+        <CSSReset />
+        <LayoutDefault page={page} scope={scope} statusCode={statusCode ?? 404}>
+          {component}
+        </LayoutDefault>
+      </ThemeProvider>
+    </>
   );
 };
 

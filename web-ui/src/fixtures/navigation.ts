@@ -1,23 +1,29 @@
 import { NavLinkProps } from "components/NavLink";
-import { FaDatabase, FaPaintBrush } from "react-icons/fa";
+import {
+  FaDatabase,
+  FaPaintBrush,
+  FaQuestion,
+  FaToolbox,
+} from "react-icons/fa";
 import { MdLoop, MdApps } from "react-icons/md";
 import { AiOutlineExperiment, AiOutlineFileSearch } from "react-icons/ai";
 import { BsGearFill } from "react-icons/bs";
 import { GiStack } from "react-icons/gi";
 import { FiLink } from "react-icons/fi";
+import { Scope, DataPage } from "~types/scopes";
 
 export const topNavLinks: NavLinkProps[] = [
   {
-    name: "data",
+    name: Scope.Data,
     active: false,
-    href: "/data/graphiql",
+    href: "/data",
     icon: FaDatabase,
     size: "sm",
     label: "Data",
     isDarker: true,
   },
   {
-    name: "event",
+    name: Scope.Event,
     active: false,
     href: "/event/webhook",
     icon: MdLoop,
@@ -26,7 +32,7 @@ export const topNavLinks: NavLinkProps[] = [
     isDarker: true,
   },
   {
-    name: "appfn",
+    name: Scope.AppFn,
     active: false,
     href: "/appfn/io-types",
     icon: MdApps,
@@ -35,7 +41,7 @@ export const topNavLinks: NavLinkProps[] = [
     isDarker: true,
   },
   {
-    name: "state-machine",
+    name: Scope.StateMachine,
     active: false,
     href: "/state-machine/fsm",
     icon: BsGearFill,
@@ -44,47 +50,65 @@ export const topNavLinks: NavLinkProps[] = [
     isDarker: true,
   },
   {
-    name: "ui",
+    name: Scope.DesignSystem,
     active: false,
-    href: "/ui/nano",
+    href: "/design-system/nano",
     icon: FaPaintBrush,
     size: "sm",
-    label: "Components",
+    label: "Design System",
+    isDarker: true,
+  },
+  {
+    name: Scope.Tools,
+    active: false,
+    href: "/tools",
+    icon: FaToolbox,
+    size: "sm",
+    label: "Tools",
+    isDarker: true,
+  },
+  {
+    name: Scope.Help,
+    active: false,
+    href: "/help",
+    icon: FaQuestion,
+    size: "sm",
+    label: "Help",
     isDarker: true,
   },
 ];
 
 export const dataNavigationLinks: NavLinkProps[] = [
   {
-    name: "graphiql",
+    name: DataPage.GraphQL,
     active: false,
-    href: "/data/graphiql",
+    href: "/data/graphql",
     icon: AiOutlineExperiment,
-    label: "GraphiQL",
+    label: "GraphQL IDE",
   },
   {
-    name: "collections",
+    name: DataPage.Collections,
     active: false,
     href: "/data/collections",
     icon: GiStack,
     label: "Collections",
   },
   {
-    name: "browse",
+    name: DataPage.Browse,
     active: false,
     href: "/data/browse",
     icon: AiOutlineFileSearch,
     label: "Browse",
   },
   {
-    name: "rest",
+    name: DataPage.REST,
     active: false,
     href: "/data/rest",
     icon: "rest",
     label: "REST",
   },
   {
-    name: "grpc",
+    name: DataPage.gRPC,
     active: false,
     href: "/data/grpc",
     icon: "grpc",

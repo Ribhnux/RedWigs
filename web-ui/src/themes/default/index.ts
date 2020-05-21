@@ -1,8 +1,8 @@
-import { theme } from "@chakra-ui/core";
+import { theme, ITheme } from "@chakra-ui/core";
 import colors from "./colors";
 import customIcons from "./icons";
 
-const defaultTheme = {
+const defaultTheme: ITheme = {
   ...theme,
   colors: {
     ...colors,

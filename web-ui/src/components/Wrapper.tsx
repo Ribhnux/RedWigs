@@ -1,5 +1,6 @@
 import { Flex, Divider, Image, Text } from "@chakra-ui/core";
 import Head from "next/head";
+import useGlobalThemeScheme from "hooks/global-themes";
 
 export const MainWrapper = ({ children }) => (
   <Flex flexDir="column" flex={1}>
@@ -7,23 +8,36 @@ export const MainWrapper = ({ children }) => (
   </Flex>
 );
 
-export const TopNavWrapper = ({ children }) => (
-  <Flex justifyContent="right" flexDir="row-reverse" p={2} bg="black">
-    <Flex justifyContent="center">{children}</Flex>
-  </Flex>
-);
+export const TopNavWrapper = ({ children }) => {
+  const [_, currentScheme] = useGlobalThemeScheme();
+  return (
+    <Flex
+      justifyContent="right"
+      flexDir="row-reverse"
+      p={2}
+      bg={currentScheme.background}
+      borderBottomWidth="1px"
+      borderBottomColor={currentScheme.border}
+    >
+      <Flex justifyContent="center">{children}</Flex>
+    </Flex>
+  );
+};
 
-export const NavWrapper = ({ children }) => (
-  <Flex
-    justifyContent="space-between"
-    bg="gray.900"
-    borderBottomColor="black"
-    borderBottomWidth="1px"
-    zIndex={999}
-  >
-    {children}
-  </Flex>
-);
+export const NavWrapper = ({ children }) => {
+  const [_, currentScheme] = useGlobalThemeScheme();
+  return (
+    <Flex
+      justifyContent="space-between"
+      bg={currentScheme.secondBackground}
+      borderBottomColor={currentScheme.border}
+      borderBottomWidth="1px"
+      zIndex={999}
+    >
+      {children}
+    </Flex>
+  );
+};
 
 export const MainNavWrapper = ({ children }) => (
   <Flex flexDir="column" justifyContent="center" flex={3}>
@@ -31,14 +45,19 @@ export const MainNavWrapper = ({ children }) => (
   </Flex>
 );
 
+export const VerticalDivider = () => {
+  const [_, currentScheme] = useGlobalThemeScheme();
+  return <Divider orientation="vertical" borderColor={currentScheme.border} />;
+};
+
 export const LogoWrapper = ({ children }) => (
   <Flex width="5rem">
     {children}
-    <Divider orientation="vertical" borderColor="gray.600" />
+    <VerticalDivider />
   </Flex>
 );
 
-export const HelperWrapper = ({ children }) => <Flex>{children}</Flex>;
+export const HelperWrapper = ({ children }) => <Flex p={2}>{children}</Flex>;
 
 export const PageWrapper = ({ children }) => (
   <Flex flex={1} justifyContent="center">

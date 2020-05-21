@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import { Scope, EventPage } from "~types/scopes";
 
 const CollectionPage = () => {
   return <div>bababa</div>;
@@ -7,8 +8,8 @@ const CollectionPage = () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
-      scope: "event",
-      page: "webhook",
+      scope: Scope.Event,
+      page: EventPage.Webhook,
     },
   };
 };
