@@ -2,6 +2,8 @@ import "graphiql/graphiql.css";
 import "../../public/css/global.css";
 import "../../public/css/graphiql-custom.css";
 import "../../public/css/nprogress.css";
+import "codemirror/theme/material-ocean.css";
+import "codemirror/theme/eclipse.css";
 
 import { AppProps } from "next/app";
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";

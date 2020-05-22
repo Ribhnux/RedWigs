@@ -24,6 +24,7 @@ const PaneTitle = ({ children }) => {
       color={currentThemeScheme.selectionForeground}
       borderColor={currentThemeScheme.border}
       borderBottomWidth={1}
+      fontWeight="500"
     >
       {children}
     </Flex>

@@ -1,0 +1,17 @@
+export const themeGraphQLSchemeMap = {
+  arkDark: "material",
+  darker: "material-darker",
+  deepOcean: "material-ocean",
+  dracula: "dracula",
+  github: "eclipse",
+  lighter: "neo",
+  lightOwl: "elegant",
+  monokaiPro: "monokai",
+  nightOwl: "night",
+  oceanic: "oceanic-next",
+  oneDark: "xq-dark",
+  oneLight: "xq-light",
+  palenight: "material-palenight",
+  solarizedDark: "solarized dark",
+  solarizedLight: "solarized light",
+};

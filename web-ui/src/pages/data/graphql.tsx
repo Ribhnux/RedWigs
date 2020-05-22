@@ -9,50 +9,43 @@ import {
   MenuList,
   MenuItem,
   Button,
+  useTheme,
 } from "@chakra-ui/core";
-import { topNavLinks } from "fixtures/navigation";
 import { Scope, DataPage } from "~types/scopes";
-
-const GraphiQL = dynamic<{
-  fetcher: any;
-  editorTheme: string;
-  docExplorerOpen: boolean;
-  defaultQuery: string;
-}>((): Promise<any> => import("graphiql"), {
-  ssr: false,
-});
+import useGlobalThemeScheme from "hooks/global-themes";
+import { themeGraphQLSchemeMap } from "fixtures/theme";
 
 const graphiQLPage = () => {
+  const [schemeName, currentScheme] = useGlobalThemeScheme();
   const defaultQuery = `
-  query{test:_get(key:"test")}
-`;
+    query{test:_get(key:"test")}
+  `;
+  const editorTheme = themeGraphQLSchemeMap[schemeName];
+  const GraphiQL = dynamic<{
+    fetcher: any;
+    editorTheme: string;
+    docExplorerOpen: boolean;
+    defaultQuery: string;
+  }>((): Promise<any> => import("graphiql"), {
+    loading: () => <p>...</p>,
+    ssr: false,
+  });
 
   return (
     <>
-      <Head>
-        <link />
-      </Head>
       <Flex flex={1}>
-        <Flex width="15rem">
-          <Menu>
-            <MenuButton as={Button}>Actions</MenuButton>
-            <MenuList>
-              <MenuItem>Download</MenuItem>
-              <MenuItem>Create a Copy</MenuItem>
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
-              <MenuItem as="a">Attend a Workshop</MenuItem>
-            </MenuList>
-          </Menu>
-        </Flex>
-        <Flex flex={1}>
-          ppp
-          {/* <GraphiQL
+        <Flex width="15rem">Header Options</Flex>
+        <Flex
+          flex={1}
+          borderLeftWidth={1}
+          borderLeftColor={currentScheme.border}
+        >
+          <GraphiQL
             fetcher={graphQLFetcher}
             defaultQuery={defaultQuery}
-            editorTheme="material-ocean"
+            editorTheme={editorTheme}
             docExplorerOpen={true}
-          /> */}
+          />
         </Flex>
       </Flex>
     </>

@@ -1,11 +1,6 @@
 .graphiql-container .topBar {
   background: rgb(0, 0, 0);
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 1) 0%,
-    #171923 80%,
-    #171923 100%
-  );
+  background: linear-gradient(180deg, #000 0%, #171923 80%, #171923 100%);
   padding: 0.5em;
   height: auto;
   border-top: 5px solid #000;
@@ -16,6 +11,10 @@
   background-color: #171923;
   border-color: #171923;
   cursor: col-resize;
+}
+
+.graphiql-container .result-window .CodeMirror {
+  background: #171923;
 }
 
 .graphiql-container .variable-editor-title {
@@ -76,7 +75,7 @@
   font-size: 18px;
 }
 
-.cm-s-material-ocean.CodeMirror {
+.CodeMirror {
   font-size: 1rem;
 }
 
@@ -110,7 +109,7 @@
   background: none;
   box-shadow: none;
   border: none;
-  font-weight: 500;
+  font-weight: 400;
   display: inline-flex;
   -webkit-appearance: none;
   -webkit-box-align: center;
@@ -143,13 +142,25 @@
 
 .graphiql-container .toolbar-button:hover {
   background-color: #c53030;
-  font-weight: 600;
+  font-weight: 400;
   color: #000;
 }
 
 .graphiql-container .toolbar-button:active {
   background: none;
   box-shadow: none;
+  font-weight: 400;
   box-shadow: #e53e3e;
   background-color: #9b2c2c;
+}
+
+.graphiql-container .historyPaneWrap {
+  background: none;
+}
+
+.graphiql-container .history-contents {
+  background: none;
+}
+.graphiql-container .history-contents li {
+  border-bottom: 1px solid;
 }
