@@ -27,6 +27,7 @@ const NavLink = ({
     : currentScheme.linksColor;
 
   const color = active ? realColor : currentScheme.foreground;
+  const textShadow = active ? "0 0 .65px, 0 0 .65px;" : "unset";
 
   return (
     <Link href={href} passHref>
@@ -36,6 +37,7 @@ const NavLink = ({
         mr={2}
         ml={2}
         color={color}
+        textShadow={`0 0 .65px, 0 0 .65px ${currentScheme}`}
         _focusWithin={{ boxShadow: "none" }}
         _hover={{ textDecor: "none", textShadow: "0 0 .65px, 0 0 .65px;" }}
         _focus={{ boxShadow: "none" }}

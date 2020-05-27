@@ -20,7 +20,7 @@ const PaneTitle = ({ children }) => {
   return (
     <Flex
       p={2}
-      bg={currentThemeScheme.selectionBackground}
+      bg={currentThemeScheme.text}
       color={currentThemeScheme.selectionForeground}
       borderColor={currentThemeScheme.border}
       borderBottomWidth={1}
@@ -62,7 +62,6 @@ const PaneWrapper: React.FC<FlexProps> = ({ children, ...props }) => {
 
 const CollectionsWrapper = ({ children }) => {
   const [_, currentThemeScheme] = useGlobalThemeScheme();
-  console.log(currentThemeScheme);
 
   return (
     <Flex justifyContent="flex-start" flex={1}>

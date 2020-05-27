@@ -16,7 +16,7 @@ export const topNavLinks: NavLinkProps[] = [
   {
     name: Scope.Data,
     active: false,
-    href: "/data",
+    href: "/data/graphql",
     icon: FaDatabase,
     size: "sm",
     label: "Data",
