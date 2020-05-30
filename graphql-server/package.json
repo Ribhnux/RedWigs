@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register ./src/app.ts"
+    "dev": "nodemon"
   },
   "dependencies": {
     "apollo-server": "^2.9.16",
@@ -21,21 +21,21 @@
     "graphql-subscriptions": "^1.1.0",
     "graphql-tag": "^2.10.1",
     "graphql-type-uuid": "^0.2.0",
-    "ioredis": "^4.14.1",
+    "ioredis": "^4.17.3",
     "jsesc": "^2.5.2",
     "lodash": "^4.17.15",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "@types/graphql": "^14.5.0",
     "@types/graphql-type-uuid": "^0.2.3",
-    "@types/ioredis": "^4.0.18",
+    "@types/ioredis": "^4.16.3",
     "@types/lodash": "^4.14.149",
     "@types/node": "^12.7.12",
     "@types/uuid": "^3.4.5",
-    "ts-node": "^8.4.1",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.44",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.9.3"
   }
 }
