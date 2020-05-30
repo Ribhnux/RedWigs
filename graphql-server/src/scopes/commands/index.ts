@@ -3,54 +3,59 @@ import { makeExecutableSchema } from "apollo-server";
 import { OKScalar, RespBulkScalar, IntStringScalarType } from "./scalars";
 import {
   resolvers as customScalarResolvers,
-  typeDefs as customScalarTypeDefs
+  typeDefs as customScalarTypeDefs,
 } from "@scopes/scalars";
 import {
   resolvers as stringCommandResolvers,
-  typeDefs as stringTypeDefs
+  typeDefs as stringTypeDefs,
 } from "./strings";
 import {
   resolvers as keysCommandResolver,
-  typeDefs as keysTypeDefs
+  typeDefs as keysTypeDefs,
 } from "./keys";
 import {
   resolvers as connectionsCommandResolver,
-  typeDefs as connectionsTypeDefs
+  typeDefs as connectionsTypeDefs,
 } from "./connections";
 import {
   resolvers as setsCommandResolver,
-  typeDefs as setsTypeDefs
+  typeDefs as setsTypeDefs,
 } from "./sets";
 import {
   resolvers as hashCommandResolver,
-  typeDefs as hashTypeDefs
+  typeDefs as hashTypeDefs,
 } from "./hashes";
 import {
   resolvers as geoCommandResolver,
-  typeDefs as geoTypeDefs
+  typeDefs as geoTypeDefs,
 } from "./geo";
 import {
   resolvers as hyperLogLogCommandResolver,
-  typeDefs as hyperLogLogTypeDefs
+  typeDefs as hyperLogLogTypeDefs,
 } from "./hyperloglog";
 import {
   resolvers as listCommandResolver,
-  typeDefs as listTypeDefs
+  typeDefs as listTypeDefs,
 } from "./lists";
 import {
   resolvers as sortedSetsCommandResolver,
-  typeDefs as sortedSetsTypeDefs
+  typeDefs as sortedSetsTypeDefs,
 } from "./sortedsets";
 
 import {
   resolvers as pubsubCommandResolver,
-  typeDefs as pubsubsTypeDefs
+  typeDefs as pubsubsTypeDefs,
 } from "./pubsub";
 
 import {
   resolvers as scriptingCommandResolvers,
-  typeDefs as scriptingTypeDefs
+  typeDefs as scriptingTypeDefs,
 } from "./scripting";
+
+import {
+  resolvers as serverCommandResolvers,
+  typeDefs as serverCommandTypeDefs,
+} from "./server";
 
 const redisRootTypeDefs = gql`
   scalar OK
@@ -80,7 +85,7 @@ const customScalarResolver = {
   OK: OKScalar,
   RespBulk: RespBulkScalar,
   IntString: IntStringScalarType,
-  ...customScalarResolvers
+  ...customScalarResolvers,
 };
 
 export const typeDefs = [
@@ -96,7 +101,8 @@ export const typeDefs = [
   ...listTypeDefs,
   ...sortedSetsTypeDefs,
   ...pubsubsTypeDefs,
-  ...scriptingTypeDefs
+  ...scriptingTypeDefs,
+  ...serverCommandTypeDefs,
 ];
 
 export const resolvers = {
@@ -111,7 +117,8 @@ export const resolvers = {
     ...listCommandResolver.Query,
     ...sortedSetsCommandResolver.Query,
     ...pubsubCommandResolver.Query,
-    ...scriptingCommandResolvers.Query
+    ...scriptingCommandResolvers.Query,
+    ...serverCommandResolvers.Query,
   },
   Mutation: {
     ...stringCommandResolvers.mutation,
@@ -124,13 +131,14 @@ export const resolvers = {
     ...listCommandResolver.Mutation,
     ...sortedSetsCommandResolver.Mutation,
     ...pubsubCommandResolver.Mutation,
-    ...scriptingCommandResolvers.Mutation
+    ...scriptingCommandResolvers.Mutation,
   },
   Subscription: {
-    ...pubsubCommandResolver.Subscription
+    ...pubsubCommandResolver.Subscription,
   },
+  ...serverCommandResolvers.NestedResolvers,
   ...keysCommandResolver.types,
-  ...customScalarResolver
+  ...customScalarResolver,
 };
 
 export const schema = makeExecutableSchema({ typeDefs, resolvers });
