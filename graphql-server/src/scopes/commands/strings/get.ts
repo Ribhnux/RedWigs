@@ -11,8 +11,12 @@ export const _get: ResolverFunction<GetArg> = async (
   { key },
   ctx
 ): Promise<string> => {
-  const value = await redisClient.get(key);
-  return value;
+  try {
+    const value = await redisClient.get(key);
+    return value;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 export const typeDefs = gql`

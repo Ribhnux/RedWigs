@@ -16,7 +16,7 @@ export const _pexpireat: ResolverFunction<PExpireAtArg> = async (
     const reply = await redisClient.send_command(
       "pexpireat",
       key,
-      BigInt(milliseconds_timestamp)
+      BigInt(milliseconds_timestamp).toString()
     );
     return reply;
   } catch (err) {

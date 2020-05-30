@@ -11,11 +11,11 @@ export const _spop: ResolverFunction<SPopArg> = async (
   root,
   { key, count },
   ctx
-): Promise<string> => {
+): Promise<string[] | string> => {
   try {
     const reply = count
       ? await redisClient.spop(key, count)
-      : redisClient.spop(key);
+      : await redisClient.spop(key);
     return reply;
   } catch (err) {
     throw new Error(err);

@@ -13,7 +13,7 @@ export const _hgetall: ResolverFunction<HMGetArg> = async (
   ctx
 ): Promise<any> => {
   try {
-    const reply: any[] = await redisClient.hgetall(key);
+    const reply = await redisClient.hgetall(key);
     const result = mapToDeepJSON(reply);
 
     return result;

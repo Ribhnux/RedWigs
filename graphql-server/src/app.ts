@@ -6,13 +6,13 @@ import http from "http";
 import listenHandler from "@handlers/listen";
 import {
   onSubscriptionConnect,
-  onSubscriptionDisconnect
+  onSubscriptionDisconnect,
 } from "@handlers/subscriber";
 
-import { getChannelNamesFromQuery } from "@utils/subscribe";
+// import { getChannelNamesFromQuery } from "@utils/subscribe";
 
 const mergedSchema = mergeSchemas({
-  schemas: [redisCommandSchema, serverSchema]
+  schemas: [redisCommandSchema, serverSchema],
 });
 
 const PORT = 4000;
@@ -29,8 +29,8 @@ const server = new ApolloServer({
   schema: mergedSchema,
   subscriptions: {
     onConnect: onSubscriptionConnect,
-    onDisconnect: onSubscriptionDisconnect
-  }
+    onDisconnect: onSubscriptionDisconnect,
+  },
 });
 server.applyMiddleware({ app });
 server.installSubscriptionHandlers(httpServer);

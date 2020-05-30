@@ -10,7 +10,7 @@ export const _smembers: ResolverFunction<SMembersArg> = async (
   root,
   { key },
   ctx
-): Promise<IntResp> => {
+): Promise<string[]> => {
   try {
     const reply = await redisClient.smembers(key);
     return reply;

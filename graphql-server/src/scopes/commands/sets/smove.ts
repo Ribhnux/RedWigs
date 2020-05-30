@@ -15,7 +15,7 @@ export const _smove: ResolverFunction<SMoveArg> = async (
 ): Promise<IntResp> => {
   try {
     const reply = await redisClient.smove(source, destination, member);
-    return parseInt(reply, 10);
+    return reply;
   } catch (err) {
     throw new Error(err);
   }

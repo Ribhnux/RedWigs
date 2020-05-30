@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { ResolverFunction, IntResp } from "@typings";
+import { ResolverFunction, IntResp, OKResp } from "@typings";
 import { redisClient } from "@adapters/redis";
 
 export type PFMergeArgs = {
@@ -11,7 +11,7 @@ export const _pfmerge: ResolverFunction<PFMergeArgs> = async (
   root,
   { destkey, sourcekey },
   ctx
-): Promise<IntResp> => {
+): Promise<OKResp> => {
   try {
     const reply = await redisClient.pfmerge(destkey, ...sourcekey);
     return reply;
