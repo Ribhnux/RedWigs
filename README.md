@@ -1,4 +1,3 @@
-# redwigs
-The name RedWigs means **RE**mote **D**ictionary **WI**th **G**raphQL **S**erver. Or simply Redis + GraphQL server.
+# Viewdice Platonic
 
-WIP
+Formerly called Redwigs. Viewdice Platonic is a platform developed by viewdice developers. It introduces ultimate no-code.
